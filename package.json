@@ -15,7 +15,8 @@
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1"
   },
   "devDependencies": {
     "@it-incubator/eslint-config": "^1.0.2",
@@ -35,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "clsx": "^2.1.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
