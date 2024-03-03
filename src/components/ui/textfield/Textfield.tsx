@@ -1,4 +1,4 @@
-import { ChangeEvent, ComponentPropsWithoutRef, HTMLInputTypeAttribute, useState } from 'react'
+import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, useState } from 'react'
 
 import clsx from 'clsx'
 import { VscChromeClose, VscEye, VscEyeClosed, VscSearch } from 'react-icons/vsc'
@@ -14,17 +14,9 @@ export type TextfieldProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const Textfield = (props: TextfieldProps) => {
-  const { className, error, label, placeholder, type = 'text' } = props
+  const { className, error, label, placeholder, type = 'text', value } = props
 
   const [isVisible, setIsVisible] = useState(true)
-  const [value, setValue] = useState('')
-
-  const changeValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.value)
-  }
-  const clearValue = () => {
-    setValue('')
-  }
   const showIconHandler = () => setIsVisible(prev => !prev)
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
@@ -46,25 +38,25 @@ export const Textfield = (props: TextfieldProps) => {
         </div>
         <input
           className={style.textfield}
-          onChange={event => changeValueHandler(event)}
           placeholder={placeholder}
           type={generateType(type, isVisible)}
-          value={value}
         />
+
         {type === 'password' && (
           <div className={clsx(style.eyeIcon, style.icon)} onClick={showIconHandler}>
             {isVisible ? <VscEye /> : <VscEyeClosed />}
           </div>
         )}
         {type === 'search' && (
-          <div className={clsx(style.closeIcon, style.icon)} onClick={clearValue}>
-            {value && <VscChromeClose />}
-          </div>
+          <div className={clsx(style.closeIcon, style.icon)}>{value && <VscChromeClose />}</div>
         )}
       </div>
-      <Typography color={'error'} variant={'caption'}>
-        {error}
-      </Typography>
+
+      {error && (
+        <Typography color={'error'} variant={'caption'}>
+          {error}
+        </Typography>
+      )}
     </div>
   )
 }
