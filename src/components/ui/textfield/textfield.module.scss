@@ -12,6 +12,7 @@
 .textfield {
   width: 100%;
 
+  line-height: var(--line-height-m);
   color: var(--color-light-100);
 
   background-color: transparent;
@@ -19,15 +20,16 @@
   outline: none;
 }
 
-.searchIcon {
-  font-size: 18px;
-  color: var(--color-dark-100);
-}
-
 .icon {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.searchIcon {
+  cursor: default;
+  font-size: 18px;
+  color: var(--color-dark-100);
 }
 
 .eyeIcon {
@@ -40,7 +42,7 @@
 
 .TextfieldWrapper {
   display: flex;
-  gap: 5px;
+  column-gap: 9px;
   align-items: center;
 
   width: 100%;
