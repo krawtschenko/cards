@@ -36,6 +36,7 @@
   @include button;
 
   background-color: var(--color-accent-500);
+  box-shadow: 0 4px 18px 0 hsl(256deg 100% 69% / 35%);
 
   &:hover {
     background-color: var(--color-accent-300);
@@ -54,6 +55,7 @@
   @include button;
 
   background-color: var(--color-dark-300);
+  box-shadow: 0 4px 4px 0 hsl(212deg 11% 34% / 13%);
 
   &:hover {
     background-color: var(--color-dark-100);
