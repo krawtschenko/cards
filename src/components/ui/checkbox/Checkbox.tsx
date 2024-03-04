@@ -10,19 +10,15 @@ import style from './checkbox.module.scss'
 type CheckboxProps = {
   classname?: string
   label: string
+  name: string
 } & ComponentPropsWithoutRef<'button'>
 
 export const CheckBox = (props: CheckboxProps) => {
-  const { classname, disabled, label } = props
+  const { classname, disabled, label, name } = props
 
   return (
     <div className={style.wrapper}>
-      <Checkbox.Root
-        className={clsx(style.checkboxRoot, classname)}
-        defaultChecked
-        disabled={disabled}
-        id={'c1'}
-      >
+      <Checkbox.Root className={clsx(style.checkboxRoot, classname)} disabled={disabled} id={name}>
         <div className={style.checkboxContainer}>
           <Checkbox.Indicator className={style.checkboxIndicator}>
             <MdCheck />
