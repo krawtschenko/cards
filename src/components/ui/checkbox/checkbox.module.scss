@@ -1,0 +1,83 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.wrapper {
+  display: flex;
+  column-gap: 3px;
+  align-items: center;
+}
+
+.checkboxRoot {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: transparent;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--color-dark-500);
+  }
+
+  &:active {
+    background-color: var(--color-dark-100);
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: transparent;
+  }
+
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid var(--color-light-900);
+    border-radius: 3px;
+  }
+
+  .checkboxIndicator {
+    display: flex;
+    color: var(--color-dark-900);
+  }
+
+  &[data-state='checked'] {
+    .checkboxContainer {
+      background-color: var(--color-light-100);
+      border-color: var(--color-light-100);
+    }
+  }
+
+  &[data-disabled] {
+    .checkboxContainer {
+      background-color: var(--color-dark-100);
+      border-color: var(--color-dark-100);
+    }
+
+    .checkboxIndicator {
+      color: var(--color-light-100);
+    }
+
+    &[data-state='unchecked'] {
+      .checkboxContainer {
+        background-color: transparent;
+        border-color: var(--color-dark-100);
+      }
+    }
+  }
+}
+
+.label {
+  color: var(--color-dark-100);
+}
