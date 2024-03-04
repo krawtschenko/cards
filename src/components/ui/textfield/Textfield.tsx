@@ -1,7 +1,8 @@
 import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, useState } from 'react'
 
 import clsx from 'clsx'
-import { VscChromeClose, VscEye, VscEyeClosed, VscSearch } from 'react-icons/vsc'
+import { LuSearch } from 'react-icons/lu'
+import { VscChromeClose, VscEye, VscEyeClosed } from 'react-icons/vsc'
 
 import style from './textfield.module.scss'
 
@@ -34,7 +35,7 @@ export const Textfield = (props: TextfieldProps) => {
       </Typography>
       <div className={clsx(style.TextfieldWrapper, error && style.error)}>
         <div className={clsx(style.searchIcon, style.icon)}>
-          {type === 'search' && <VscSearch />}
+          {type === 'search' && <LuSearch />}
         </div>
         <input
           className={style.textfield}
