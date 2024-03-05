@@ -1,7 +1,5 @@
-import { ComponentPropsWithoutRef } from 'react'
-
 import { Typography } from '@/components/ui/typography/Typography'
-import * as Checkbox from '@radix-ui/react-checkbox'
+import * as CheckBox from '@radix-ui/react-checkbox'
 import clsx from 'clsx'
 import { MdCheck } from 'react-icons/md'
 
@@ -9,22 +7,23 @@ import style from './checkbox.module.scss'
 
 type CheckboxProps = {
   classname?: string
+  disabled?: boolean
   label: string
-  name: string
-} & ComponentPropsWithoutRef<'button'>
+  name?: string
+}
 
-export const CheckBox = (props: CheckboxProps) => {
+export const Checkbox = (props: CheckboxProps) => {
   const { classname, disabled, label, name } = props
 
   return (
     <div className={style.wrapper}>
-      <Checkbox.Root className={clsx(style.checkboxRoot, classname)} disabled={disabled} id={name}>
+      <CheckBox.Root className={clsx(style.checkboxRoot, classname)} disabled={disabled} id={name}>
         <div className={style.checkboxContainer}>
-          <Checkbox.Indicator className={style.checkboxIndicator}>
+          <CheckBox.Indicator className={style.checkboxIndicator}>
             <MdCheck />
-          </Checkbox.Indicator>
+          </CheckBox.Indicator>
         </div>
-      </Checkbox.Root>
+      </CheckBox.Root>
 
       <Typography className={clsx(disabled && style.label)} variant={'body2'}>
         {label}

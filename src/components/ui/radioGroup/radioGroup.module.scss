@@ -1,0 +1,92 @@
+button {
+  all: unset;
+}
+
+.wrapper {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.radioGroupRoot {
+  display: flex;
+  flex-direction: column;
+
+  .radioGroupItem {
+    cursor: pointer;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      top: 10px;
+      left: 10px;
+
+      width: 16px;
+      height: 16px;
+
+      border: 2px solid var(--color-accent-500);
+      border-radius: 50%;
+    }
+
+    &:hover {
+      background-color: var(--color-dark-500);
+    }
+
+    &:active {
+      background-color: var(--color-accent-900);
+    }
+
+    &[data-disabled] {
+      background-color: transparent;
+    }
+  }
+
+  .radioGroupIndicator {
+    &::after {
+      content: '';
+
+      display: block;
+
+      width: 8px;
+      height: 8px;
+
+      background-color: var(--color-accent-500);
+      border-radius: 50%;
+    }
+  }
+
+  &[data-disabled] {
+    .radioGroupItem {
+      cursor: default;
+      border-color: var(--color-accent-900);
+
+      &::after {
+        border-color: var(--color-accent-900);
+      }
+    }
+
+    .radioGroupIndicator {
+      &::after {
+        background-color: var(--color-accent-900);
+      }
+    }
+  }
+}
+
+.label {
+  color: var(--color-light-900);
+}
