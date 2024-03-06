@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { LuSearch } from 'react-icons/lu'
 import { VscChromeClose, VscEye, VscEyeClosed } from 'react-icons/vsc'
 
-import style from './textfield.module.scss'
+import style from './input.module.scss'
 
 import { Typography } from '../typography/Typography'
 
@@ -14,7 +14,7 @@ export type TextfieldProps = {
   label?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Textfield = (props: TextfieldProps) => {
+export const Input = (props: TextfieldProps) => {
   const { className, error, label, placeholder, type = 'text', value } = props
 
   const [isVisible, setIsVisible] = useState(true)
