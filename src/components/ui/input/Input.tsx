@@ -15,7 +15,7 @@ export type TextfieldProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = (props: TextfieldProps) => {
-  const { className, error, label, placeholder, type = 'text', value } = props
+  const { className, disabled, error, label, placeholder, type = 'text', value } = props
 
   const [isVisible, setIsVisible] = useState(true)
   const showIconHandler = () => setIsVisible(prev => !prev)
@@ -29,16 +29,17 @@ export const Input = (props: TextfieldProps) => {
   }
 
   return (
-    <div className={clsx(style.root, className)}>
+    <div aria-disabled={disabled} className={clsx(style.root, className)}>
       <Typography className={style.label} variant={'body2'}>
         {label}
       </Typography>
-      <div className={clsx(style.TextfieldWrapper, error && style.error)}>
+      <div className={clsx(style.wrapper, error && style.error)}>
         <div className={clsx(style.searchIcon, style.icon)}>
           {type === 'search' && <LuSearch />}
         </div>
         <input
-          className={style.textfield}
+          className={style.input}
+          disabled={disabled}
           placeholder={placeholder}
           type={generateType(type, isVisible)}
         />

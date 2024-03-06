@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
+    disabled: false,
     label: 'Test',
     placeholder: 'placeholder',
   },
@@ -20,6 +21,7 @@ export const Primary: Story = {
 
 export const WithPassword: Story = {
   args: {
+    disabled: false,
     label: 'Test',
     placeholder: 'placeholder',
     type: 'password',
@@ -35,6 +37,7 @@ export const WithError: Story = {
 
 export const WithSearch: Story = {
   args: {
+    disabled: false,
     label: 'Test',
     placeholder: 'placeholder',
     type: 'search',
