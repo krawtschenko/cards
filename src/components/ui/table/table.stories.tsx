@@ -54,7 +54,7 @@ export const Primary: Story = {
             <TableHeader>Cards</TableHeader>
             <TableHeader>Last Updated</TableHeader>
             <TableHeader>Created by</TableHeader>
-            <TableHeader>Icon</TableHeader>
+            <TableHeader></TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
