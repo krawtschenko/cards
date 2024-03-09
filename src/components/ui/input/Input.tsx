@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, useState } from 'react'
+import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, forwardRef, useState } from 'react'
 
 import clsx from 'clsx'
 import { LuSearch } from 'react-icons/lu'
@@ -8,14 +8,14 @@ import style from './input.module.scss'
 
 import { Typography } from '../typography/Typography'
 
-export type TextfieldProps = {
+export type InputProps = {
   className?: string
   error?: string
   label?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = (props: TextfieldProps) => {
-  const { className, disabled, error, label, placeholder, type = 'text', value } = props
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { className, disabled, error, label, placeholder, type = 'text', value, ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
   const showIconHandler = () => setIsVisible(prev => !prev)
@@ -41,7 +41,9 @@ export const Input = (props: TextfieldProps) => {
           className={style.input}
           disabled={disabled}
           placeholder={placeholder}
+          ref={ref}
           type={generateType(type, isVisible)}
+          {...rest}
         />
 
         {type === 'password' && (
@@ -61,4 +63,4 @@ export const Input = (props: TextfieldProps) => {
       )}
     </div>
   )
-}
+})
