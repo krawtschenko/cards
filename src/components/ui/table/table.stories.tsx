@@ -58,17 +58,15 @@ export const Primary: Story = {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(({ cardsCount, createdBy, title, updated }) => {
-            return (
-              <TableRow key={title}>
-                <TableData>{title}</TableData>
-                <TableData>{cardsCount}</TableData>
-                <TableData>{updated}</TableData>
-                <TableData>{createdBy}</TableData>
-                <TableData>icons</TableData>
-              </TableRow>
-            )
-          })}
+          {data.map(({ cardsCount, createdBy, title, updated }) => (
+            <TableRow key={title}>
+              <TableData>{title}</TableData>
+              <TableData>{cardsCount}</TableData>
+              <TableData>{updated}</TableData>
+              <TableData>{createdBy}</TableData>
+              <TableData>icons</TableData>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     )
