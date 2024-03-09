@@ -8,7 +8,6 @@
     column-gap: 9px;
     align-items: center;
 
-    width: 100%;
     padding: 6px 12px;
 
     background-color: inherit;
@@ -37,12 +36,10 @@
     }
 
     .input {
-      width: 100%;
-
       line-height: var(--line-height-m);
       color: var(--color-light-100);
 
-      background-color: transparent;
+      background-color: inherit;
       border: none;
       outline: none;
 
