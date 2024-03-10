@@ -1,4 +1,10 @@
-import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, forwardRef, useState } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  HTMLInputTypeAttribute,
+  forwardRef,
+  useState,
+} from 'react'
 
 import clsx from 'clsx'
 import { LuSearch } from 'react-icons/lu'
@@ -14,7 +20,7 @@ export type InputProps = {
   label?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
   const { className, disabled, error, label, placeholder, type = 'text', value, ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
