@@ -23,11 +23,3 @@ export const Primary: Story = {
     defaultValue: '1',
   },
 }
-
-export const Disabled: Story = {
-  args: {
-    data,
-    defaultValue: '2',
-    disabled: true,
-  },
-}

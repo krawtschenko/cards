@@ -1,17 +1,22 @@
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button/Button'
-import { Checkbox } from '@/components/ui/checkbox/Checkbox'
+import { ControlledCheckbox } from '@/components/ui/checkbox/ControlledCheckbox'
 import { Input } from '@/components/ui/input/Input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
+import { loginSchema } from './loginSchema'
+
+type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
-  const { handleSubmit, register } = useForm<FormValues>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
@@ -19,9 +24,9 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register('email')} label={'email'} />
-      <Input {...register('password')} label={'password'} />
-      <Checkbox {...register('rememberMe')} label={'remember'} />
+      <Input {...register('email')} error={errors.email?.message} label={'email'} />
+      <Input {...register('password')} error={errors.password?.message} label={'password'} />
+      <ControlledCheckbox control={control} label={'Remember Me'} name={'rememberMe'} />
       <Button type={'submit'}>Submit</Button>
     </form>
   )
