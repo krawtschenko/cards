@@ -29,7 +29,6 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
     error,
     label,
     onChange,
-    // onClearInput,
     onValueChange,
     placeholder,
     type = 'text',
