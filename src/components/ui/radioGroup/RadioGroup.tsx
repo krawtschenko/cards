@@ -1,14 +1,19 @@
+import { ComponentPropsWithoutRef } from 'react'
+
 import { Typography } from '@/components/ui/typography/Typography'
 import * as RadioGroups from '@radix-ui/react-radio-group'
 import clsx from 'clsx'
 
 import style from './radioGroup.module.scss'
 
-type RadioGroupProps = {
+export type RadioGroupProps = {
   data: Data[]
-  defaultValue: string
+  defaultValue?: string
   disabled?: boolean
-}
+  name?: string
+  onValueChange?: (value: string) => void
+} & ComponentPropsWithoutRef<'div'>
+
 export type Data = {
   id: string
   value: string
