@@ -19,7 +19,6 @@ export type InputProps = {
   className?: string
   error?: string
   label?: string
-  onClearInput?: () => void
   onValueChange?: (value: string) => void
 } & ComponentPropsWithoutRef<'input'>
 
@@ -30,7 +29,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
     error,
     label,
     onChange,
-    onClearInput,
+    // onClearInput,
     onValueChange,
     placeholder,
     type = 'text',
@@ -42,12 +41,14 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
   const showIconHandler = () => setIsVisible(prev => !prev)
 
   const clearInputHandler = () => {
-    onValueChange?.('')
-    onClearInput?.()
+    if (onValueChange) {
+      onValueChange('')
+    }
   }
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e)
-    onValueChange?.(e.currentTarget.value)
+    if (onValueChange) {
+      onValueChange(e.currentTarget.value)
+    }
   }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
@@ -84,11 +85,11 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             {isVisible ? <VscEye /> : <VscEyeClosed />}
           </div>
         )}
-        {type === 'search' && (
-          <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
-            {value && <VscChromeClose />}
-          </div>
-        )}
+        {/*{type === 'search' && (*/}
+        <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
+          {value && <VscChromeClose />}
+        </div>
+        {/*)}*/}
       </div>
 
       {error && (
