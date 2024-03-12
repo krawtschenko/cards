@@ -15,12 +15,12 @@ export type RadioGroupProps = {
 } & ComponentPropsWithoutRef<'div'>
 
 export type Data = {
-  id: string
+  label: string
   value: string
 }
 
 export const RadioGroup = (props: RadioGroupProps) => {
-  const { data, defaultValue, disabled } = props
+  const { data, defaultValue, disabled, name, onValueChange } = props
 
   return (
     <form>
@@ -29,16 +29,18 @@ export const RadioGroup = (props: RadioGroupProps) => {
         className={style.radioGroupRoot}
         defaultValue={defaultValue}
         disabled={disabled}
+        name={name}
+        onValueChange={onValueChange}
       >
-        {data.map(({ id, value }) => {
+        {data.map(({ label, value }) => {
           return (
-            <div className={style.wrapper} key={id}>
-              <RadioGroups.Item className={style.radioGroupItem} id={id} value={id}>
+            <div className={style.wrapper} key={value}>
+              <RadioGroups.Item className={style.radioGroupItem} id={label} value={value}>
                 <RadioGroups.Indicator className={style.radioGroupIndicator} />
               </RadioGroups.Item>
 
               <Typography className={clsx(disabled && style.label)} variant={'body2'}>
-                {value}
+                {label}
               </Typography>
             </div>
           )

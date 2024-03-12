@@ -12,14 +12,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const data: Data[] = [
-  { id: '1', value: 'Default' },
-  { id: '2', value: 'Comfortable' },
-  { id: '3', value: 'Compact' },
+  { label: 'Default', value: 'Default' },
+  { label: 'Comfortable', value: 'Comfortable' },
+  { label: 'Compact', value: 'Compact' },
 ]
 
 export const Primary: Story = {
   args: {
     data,
-    defaultValue: '1',
+    defaultValue: 'Compact',
   },
 }
