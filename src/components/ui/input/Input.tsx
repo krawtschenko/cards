@@ -1,4 +1,5 @@
 import {
+  ChangeEvent,
   ComponentPropsWithoutRef,
   ElementRef,
   HTMLInputTypeAttribute,
@@ -18,13 +19,36 @@ export type InputProps = {
   className?: string
   error?: string
   label?: string
+  onClearInput?: () => void
+  onValueChange?: (value: string) => void
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
-  const { className, disabled, error, label, placeholder, type = 'text', value, ...rest } = props
+  const {
+    className,
+    disabled,
+    error,
+    label,
+    onChange,
+    onClearInput,
+    onValueChange,
+    placeholder,
+    type = 'text',
+    value,
+    ...rest
+  } = props
 
   const [isVisible, setIsVisible] = useState(true)
   const showIconHandler = () => setIsVisible(prev => !prev)
+
+  const clearInputHandler = () => {
+    onValueChange?.('')
+    onClearInput?.()
+  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e)
+    onValueChange?.(e.currentTarget.value)
+  }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
     if (type === 'password' && showIcon) {
@@ -40,12 +64,15 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
         {label}
       </Typography>
       <div className={clsx(style.wrapper, error && style.error)}>
-        <div className={clsx(style.searchIcon, style.icon)}>
-          {type === 'search' && <LuSearch />}
-        </div>
+        {type === 'search' && (
+          <div className={clsx(style.searchIcon, style.icon)}>
+            <LuSearch />
+          </div>
+        )}
         <input
           className={style.input}
           disabled={disabled}
+          onChange={handleChange}
           placeholder={placeholder}
           ref={ref}
           type={generateType(type, isVisible)}
@@ -58,7 +85,9 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
           </div>
         )}
         {type === 'search' && (
-          <div className={clsx(style.closeIcon, style.icon)}>{value && <VscChromeClose />}</div>
+          <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
+            {value && <VscChromeClose />}
+          </div>
         )}
       </div>
 
