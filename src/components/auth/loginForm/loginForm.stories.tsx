@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { LoginForm } from './loginForm'
+import { FormValues, LoginForm } from './loginForm'
 
 const meta = {
   component: LoginForm,
@@ -11,4 +11,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    onSubmit: (data: FormValues) => console.log(data),
+  },
+}

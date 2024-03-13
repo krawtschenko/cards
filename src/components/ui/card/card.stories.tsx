@@ -11,4 +11,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {}
+const styles = {
+  height: '552px',
+  width: '420px',
+}
+
+export const Primary: Story = {
+  args: {
+    style: styles,
+  },
+}

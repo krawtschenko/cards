@@ -9,7 +9,7 @@ import style from './checkbox.module.scss'
 
 export type CheckboxProps = {
   checked?: boolean
-  classname?: string
+  className?: string
   disabled?: boolean
   label: string
   name?: string
@@ -18,13 +18,13 @@ export type CheckboxProps = {
 
 export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
   (props, ref) => {
-    const { checked, classname, disabled, id, label, name, onValueChange, ...rest } = props
+    const { checked, className, disabled, id, label, name, onValueChange, ...rest } = props
 
     return (
-      <div className={style.wrapper}>
+      <div className={clsx(style.wrapper, className)}>
         <CheckboxRadix.Root
           checked={checked}
-          className={clsx(style.checkboxRoot, classname)}
+          className={clsx(style.checkboxRoot)}
           disabled={disabled}
           id={id}
           name={name}
