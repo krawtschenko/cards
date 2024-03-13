@@ -28,9 +28,6 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
   const clearInputHandler = () => {
     // onValueChange?.('')
   }
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   onValueChange?.(e.currentTarget.value)
-  // }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
     if (type === 'password' && showIcon) {
@@ -51,7 +48,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             <LuSearch />
           </div>
         )}
-        <input className={style.input} ref={ref} type={generateType(type, isVisible)} {...rest} />
+        <input {...rest} className={style.input} ref={ref} type={generateType(type, isVisible)} />
 
         {type === 'password' && (
           <div className={clsx(style.eyeIcon, style.icon)} onClick={showIconHandler}>
