@@ -16,7 +16,6 @@ import style from './input.module.scss'
 import { Typography } from '../typography/Typography'
 
 export type InputProps = {
-  className?: string
   error?: string
   label?: string
   onValueChange?: (value: string) => void
@@ -25,14 +24,12 @@ export type InputProps = {
 export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
   const {
     className,
-    disabled,
     error,
     label,
     onChange,
     onValueChange,
     placeholder,
     type = 'text',
-    value,
     ...rest
   } = props
 
@@ -40,14 +37,10 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
   const showIconHandler = () => setIsVisible(prev => !prev)
 
   const clearInputHandler = () => {
-    if (onValueChange) {
-      onValueChange('')
-    }
+    onValueChange?.('')
   }
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (onValueChange) {
-      onValueChange(e.currentTarget.value)
-    }
+    onValueChange?.(e.currentTarget.value)
   }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
@@ -59,7 +52,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
   }
 
   return (
-    <div aria-disabled={disabled} className={clsx(style.root, className)}>
+    <div aria-disabled={rest.disabled} className={clsx(style.root, className)}>
       <Typography className={style.label} variant={'body2'}>
         {label}
       </Typography>
@@ -71,7 +64,6 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
         )}
         <input
           className={style.input}
-          disabled={disabled}
           onChange={handleChange}
           placeholder={placeholder}
           ref={ref}
@@ -86,7 +78,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
         )}
         {/*{type === 'search' && (*/}
         <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
-          {value && <VscChromeClose />}
+          {rest.value && <VscChromeClose />}
         </div>
         {/*)}*/}
       </div>

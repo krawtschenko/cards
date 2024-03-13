@@ -11,11 +11,9 @@ import { loginSchema } from './loginSchema'
 type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(loginSchema),
+  })
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
@@ -23,20 +21,18 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <ControlledInput control={control} label={'Email'} name={'email'} placeholder={'Email'} />
       <ControlledInput
         control={control}
-        error={errors.email?.message}
-        label={'email'}
-        name={'email'}
-      />
-      <ControlledInput
-        control={control}
-        error={errors.password?.message}
-        label={'password'}
+        label={'Password'}
         name={'password'}
+        placeholder={'Password'}
+        type={'password'}
       />
       <ControlledCheckbox control={control} label={'Remember Me'} name={'rememberMe'} />
-      <Button type={'submit'}>Submit</Button>
+      <Button fullWidth type={'submit'}>
+        Submit
+      </Button>
     </form>
   )
 }
