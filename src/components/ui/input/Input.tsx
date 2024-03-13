@@ -76,11 +76,11 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             {isVisible ? <VscEye /> : <VscEyeClosed />}
           </div>
         )}
-        {/*{type === 'search' && (*/}
-        <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
-          {rest.value && <VscChromeClose />}
-        </div>
-        {/*)}*/}
+        {type === 'search' && (
+          <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
+            {rest.value && <VscChromeClose />}
+          </div>
+        )}
       </div>
 
       {error && (

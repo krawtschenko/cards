@@ -29,14 +29,18 @@
     }
 
     .eyeIcon {
+      margin-left: 9px;
       font-size: 20px;
     }
 
     .closeIcon {
+      margin-left: 9px;
       font-size: 16px;
     }
 
     .input {
+      width: 100%;
+
       line-height: var(--line-height-m);
       color: var(--color-light-100);
 
