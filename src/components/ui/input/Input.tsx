@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   ComponentPropsWithoutRef,
   ElementRef,
   HTMLInputTypeAttribute,
@@ -18,30 +17,20 @@ import { Typography } from '../typography/Typography'
 export type InputProps = {
   error?: string
   label?: string
-  onValueChange?: (value: string) => void
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
-  const {
-    className,
-    error,
-    label,
-    onChange,
-    onValueChange,
-    placeholder,
-    type = 'text',
-    ...rest
-  } = props
+  const { className, error, label, type = 'text', ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
   const showIconHandler = () => setIsVisible(prev => !prev)
 
   const clearInputHandler = () => {
-    onValueChange?.('')
+    // onValueChange?.('')
   }
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onValueChange?.(e.currentTarget.value)
-  }
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   onValueChange?.(e.currentTarget.value)
+  // }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
     if (type === 'password' && showIcon) {
@@ -62,14 +51,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             <LuSearch />
           </div>
         )}
-        <input
-          className={style.input}
-          onChange={handleChange}
-          placeholder={placeholder}
-          ref={ref}
-          type={generateType(type, isVisible)}
-          {...rest}
-        />
+        <input className={style.input} ref={ref} type={generateType(type, isVisible)} {...rest} />
 
         {type === 'password' && (
           <div className={clsx(style.eyeIcon, style.icon)} onClick={showIconHandler}>

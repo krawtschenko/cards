@@ -15,5 +15,16 @@ export const ControlledInput = <T extends FieldValues>(props: ControlledInputPro
     name,
   })
 
-  return <Input error={error?.message} onValueChange={field.onChange} {...field} {...rest} />
+  return (
+    <Input
+      {...field}
+      {...rest}
+      error={error?.message}
+      name={field.name} // send down the input name
+      onBlur={field.onBlur} // notify when input is touched/blur
+      onChange={field.onChange} // send value to hook form
+      ref={field.ref} // send input ref, so we can focus on input when error appear
+      value={field.value} // input value
+    />
+  )
 }
