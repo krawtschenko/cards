@@ -11,13 +11,17 @@ import { loginSchema } from './loginSchema'
 type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
-  const { control, handleSubmit, reset } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
     resolver: zodResolver(loginSchema),
   })
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
-    reset()
   }
 
   return (
