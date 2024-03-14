@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 
-import { signUpSchema } from '@/components/auth/SignUpForm/signUpSchema'
 import { Button } from '@/components/ui/button/Button'
 import { Card } from '@/components/ui/card/Card'
 import { ControlledInput } from '@/components/ui/input/ControlledInput'
@@ -8,27 +7,27 @@ import { Typography } from '@/components/ui/typography/Typography'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import style from './signUpForm.module.scss'
+import style from './forgotForm.module.scss'
 
-export type FormValues = z.infer<typeof signUpSchema>
-type SignUpProps = {
+import { forgotSchema } from './forgotSchema'
+
+export type FormValues = z.infer<typeof forgotSchema>
+type ForgotProps = {
   onSubmit: (data: FormValues) => void
 }
 
-export const SignUpForm = ({ onSubmit }: SignUpProps) => {
+export const ForgotForm = ({ onSubmit }: ForgotProps) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      confirm: '',
       email: '',
-      password: '',
     },
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(forgotSchema),
   })
 
   return (
     <Card>
       <Typography className={style.title} variant={'h1'}>
-        Sign Up
+        Forgot your password?
       </Typography>
 
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -40,35 +39,21 @@ export const SignUpForm = ({ onSubmit }: SignUpProps) => {
           type={'email'}
         />
 
-        <ControlledInput
-          className={style.password}
-          control={control}
-          label={'Password'}
-          name={'password'}
-          placeholder={'Password'}
-          type={'password'}
-        />
-
-        <ControlledInput
-          className={style.password}
-          control={control}
-          label={'Confirm Password'}
-          name={'confirm'}
-          placeholder={'Confirm Password'}
-          type={'password'}
-        />
+        <Typography className={style.info} variant={'body2'}>
+          Enter your email address and we will send you further instructions
+        </Typography>
 
         <Button className={style.button} fullWidth type={'submit'}>
-          Sign Up
+          Send Instructions
         </Button>
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>
-        Already have an account?
+        Did you remember your password?
       </Typography>
 
       <Typography className={style.signIn} variant={'h4'}>
-        Sign In
+        Try logging in
       </Typography>
     </Card>
   )

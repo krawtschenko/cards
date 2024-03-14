@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const signUpSchema = z
+export const registrationSchema = z
   .object({
     confirm: z.string().min(3),
     email: z.string().email(),
