@@ -1,36 +1,34 @@
 import { useForm } from 'react-hook-form'
 
+import { signUpSchema } from '@/components/auth/SignUpForm/signUpSchema'
 import { Button } from '@/components/ui/button/Button'
 import { Card } from '@/components/ui/card/Card'
-import { ControlledCheckbox } from '@/components/ui/checkbox/ControlledCheckbox'
 import { ControlledInput } from '@/components/ui/input/ControlledInput'
 import { Typography } from '@/components/ui/typography/Typography'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import style from './loginForm.module.scss'
+import style from './signUpForm.module.scss'
 
-import { loginSchema } from './loginSchema'
-
-export type FormValues = z.infer<typeof loginSchema>
-type LoginProps = {
+export type FormValues = z.infer<typeof signUpSchema>
+type SignUpProps = {
   onSubmit: (data: FormValues) => void
 }
 
-export const LoginForm = ({ onSubmit }: LoginProps) => {
+export const SignUpForm = ({ onSubmit }: SignUpProps) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
+      confirm: '',
       email: '',
       password: '',
-      rememberMe: false,
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(signUpSchema),
   })
 
   return (
     <Card>
       <Typography className={style.title} variant={'h1'}>
-        Sign In
+        Sign Up
       </Typography>
 
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -51,33 +49,26 @@ export const LoginForm = ({ onSubmit }: LoginProps) => {
           type={'password'}
         />
 
-        <div className={style.checkboxWrapper}>
-          <ControlledCheckbox
-            className={style.checkbox}
-            control={control}
-            label={'Remember Me'}
-            name={'rememberMe'}
-          />
-        </div>
-
-        <div className={style.forgotWrapper}>
-          <Typography className={style.forgot} variant={'body2'}>
-            Forgot Password?
-          </Typography>
-        </div>
+        <ControlledInput
+          className={style.password}
+          control={control}
+          label={'Confirm Password'}
+          name={'confirm'}
+          placeholder={'Confirm Password'}
+          type={'password'}
+        />
 
         <Button className={style.button} fullWidth type={'submit'}>
-          Sign In
+          Sign Up
         </Button>
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        Don't have an account?
+        Already have an account?
       </Typography>
 
       <Typography className={style.signIn} variant={'h4'}>
-        Sign Up
+        Sign In
       </Typography>
     </Card>
   )

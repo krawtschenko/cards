@@ -23,7 +23,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
   const { className, error, label, type = 'text', ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
-  const showIconHandler = () => setIsVisible(prev => !prev)
+  const showIconHandler = (value: boolean) => setIsVisible(value)
 
   const clearInputHandler = () => {
     // onValueChange?.('')
@@ -51,7 +51,11 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
         <input {...rest} className={style.input} ref={ref} type={generateType(type, isVisible)} />
 
         {type === 'password' && (
-          <div className={clsx(style.eyeIcon, style.icon)} onClick={showIconHandler}>
+          <div
+            className={clsx(style.eyeIcon, style.icon)}
+            onMouseDown={() => showIconHandler(false)}
+            onMouseUp={() => showIconHandler(true)}
+          >
             {isVisible ? <VscEye /> : <VscEyeClosed />}
           </div>
         )}
