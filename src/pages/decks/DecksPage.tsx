@@ -1,4 +1,7 @@
+import { useState } from 'react'
+
 import { Button } from '@/components/ui/button/Button'
+import { Input } from '@/components/ui/input/Input'
 import {
   Table,
   TableBody,
@@ -9,39 +12,49 @@ import {
 } from '@/components/ui/table/Table'
 import { useGetDecksQuery } from '@/services/base-api'
 
+import style from './decksPage.module.scss'
+
 export const DecksPage = () => {
-  const { data, isLoading } = useGetDecksQuery()
+  const [search, setSearch] = useState('')
+  const { data, isLoading } = useGetDecksQuery({ name: search })
 
   if (isLoading) {
     return <div>Loading...</div>
   }
 
   return (
-    <Table style={{ margin: '0 auto' }}>
-      <TableHead>
-        <TableRow>
-          <TableHeadCell>Name</TableHeadCell>
-          <TableHeadCell>Cards</TableHeadCell>
-          <TableHeadCell>Last Updated</TableHeadCell>
-          <TableHeadCell>Created By</TableHeadCell>
-          <TableHeadCell></TableHeadCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data?.items.map(({ author, cardsCount, id, name, updated }) => {
-          return (
-            <TableRow key={id}>
-              <TableData>{name}</TableData>
-              <TableData>{cardsCount}</TableData>
-              <TableData>{new Date(updated).toLocaleDateString('pl')}</TableData>
-              <TableData>{author.name}</TableData>
-              <TableData>
-                <Button>Edit</Button>
-              </TableData>
-            </TableRow>
-          )
-        })}
-      </TableBody>
-    </Table>
+    <div className={style.root}>
+      <Input
+        label={'Search'}
+        onChange={event => setSearch(event.currentTarget.value)}
+        value={search}
+      />
+      <Table className={style.table}>
+        <TableHead>
+          <TableRow>
+            <TableHeadCell>Name</TableHeadCell>
+            <TableHeadCell>Cards</TableHeadCell>
+            <TableHeadCell>Last Updated</TableHeadCell>
+            <TableHeadCell>Created By</TableHeadCell>
+            <TableHeadCell></TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.items.map(({ author, cardsCount, id, name, updated }) => {
+            return (
+              <TableRow key={id}>
+                <TableData>{name}</TableData>
+                <TableData>{cardsCount}</TableData>
+                <TableData>{new Date(updated).toLocaleDateString('pl')}</TableData>
+                <TableData>{author.name}</TableData>
+                <TableData>
+                  <Button>Edit</Button>
+                </TableData>
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </div>
   )
 }
