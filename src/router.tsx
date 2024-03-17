@@ -1,33 +1,23 @@
-import {
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom'
+import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { LoginForm } from '@/components/auth/loginForm/loginForm'
-
-const privateRoutes: RouteObject[] = [
-  {
-    element: <div>Private Route</div>,
-    path: '/',
-  },
-]
-
-const publicRoutes: RouteObject[] = [
-  {
-    element: <LoginForm onSubmit={() => console.log('login')} />,
-    path: '/login',
-  },
-]
+import { DecksPage } from '@/pages/decks/DecksPage'
 
 const router = createBrowserRouter([
   {
-    children: privateRoutes,
+    children: [
+      {
+        element: <DecksPage />,
+        path: '/',
+      },
+    ],
     element: <PrivateRoutes />,
   },
-  ...publicRoutes,
+  {
+    // eslint-disable-next-line no-console
+    element: <LoginForm onSubmit={() => console.log('login')} />,
+    path: '/login',
+  },
 ])
 
 export const Router = () => {
@@ -35,7 +25,7 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = false
+  const isAuthenticated = true
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }

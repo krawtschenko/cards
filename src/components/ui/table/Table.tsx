@@ -20,7 +20,7 @@ export const TableRow = ({ ...rest }: ComponentPropsWithoutRef<'tr'>) => {
   return <tr className={style.tableRow} {...rest}></tr>
 }
 
-export const TableHeader = ({ ...rest }: ComponentPropsWithoutRef<'th'>) => {
+export const TableHeadCell = ({ ...rest }: ComponentPropsWithoutRef<'th'>) => {
   return (
     <th className={style.tableHeader} {...rest}>
       <Typography variant={'subtitle2'}>{rest.children}</Typography>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Table, TableBody, TableData, TableHead, TableHeader, TableRow } from './Table'
+import { Table, TableBody, TableData, TableHead, TableHeadCell, TableRow } from './Table'
 
 const meta = {
   component: Table,
@@ -50,11 +50,11 @@ export const Primary: Story = {
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeader>Name</TableHeader>
-            <TableHeader>Cards</TableHeader>
-            <TableHeader>Last Updated</TableHeader>
-            <TableHeader>Created by</TableHeader>
-            <TableHeader></TableHeader>
+            <TableHeadCell>Name</TableHeadCell>
+            <TableHeadCell>Cards</TableHeadCell>
+            <TableHeadCell>Last Updated</TableHeadCell>
+            <TableHeadCell>Created by</TableHeadCell>
+            <TableHeadCell></TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
