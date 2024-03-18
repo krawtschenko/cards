@@ -27,6 +27,7 @@ export const DecksPage = () => {
       <Input
         label={'Search'}
         onChange={event => setSearch(event.currentTarget.value)}
+        type={'search'}
         value={search}
       />
       <Table className={style.table}>

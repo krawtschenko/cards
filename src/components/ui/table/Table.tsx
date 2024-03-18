@@ -1,28 +1,29 @@
 import { ComponentPropsWithoutRef } from 'react'
 
 import { Typography } from '@/components/ui/typography/Typography'
+import clsx from 'clsx'
 
 import style from './table.module.scss'
 
-export const Table = ({ ...rest }: ComponentPropsWithoutRef<'table'>) => {
-  return <table className={style.table} {...rest}></table>
+export const Table = ({ className, ...rest }: ComponentPropsWithoutRef<'table'>) => {
+  return <table className={clsx(style.table, className)} {...rest}></table>
 }
 
-export const TableHead = ({ ...rest }: ComponentPropsWithoutRef<'thead'>) => {
-  return <thead className={style.tableHead} {...rest}></thead>
+export const TableHead = ({ className, ...rest }: ComponentPropsWithoutRef<'thead'>) => {
+  return <thead className={clsx(style.tableHead, className)} {...rest}></thead>
 }
 
-export const TableBody = ({ ...rest }: ComponentPropsWithoutRef<'tbody'>) => {
-  return <tbody className={style.tableBody} {...rest}></tbody>
+export const TableBody = ({ className, ...rest }: ComponentPropsWithoutRef<'tbody'>) => {
+  return <tbody className={clsx(style.tableBody, className)} {...rest}></tbody>
 }
 
-export const TableRow = ({ ...rest }: ComponentPropsWithoutRef<'tr'>) => {
-  return <tr className={style.tableRow} {...rest}></tr>
+export const TableRow = ({ className, ...rest }: ComponentPropsWithoutRef<'tr'>) => {
+  return <tr className={clsx(style.tableRow, className)} {...rest}></tr>
 }
 
-export const TableHeadCell = ({ ...rest }: ComponentPropsWithoutRef<'th'>) => {
+export const TableHeadCell = ({ className, ...rest }: ComponentPropsWithoutRef<'th'>) => {
   return (
-    <th className={style.tableHeader} {...rest}>
+    <th className={clsx(style.tableHeadCell, className)} {...rest}>
       <Typography variant={'subtitle2'}>{rest.children}</Typography>
     </th>
   )
