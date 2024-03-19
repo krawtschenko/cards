@@ -5,11 +5,8 @@ import { Input, InputProps } from './Input'
 export type ControlledInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<InputProps, 'id' | 'onChange' | 'value'>
 
-export const ControlledInput = <T extends FieldValues>({
-  control,
-  name,
-  ...rest
-}: ControlledInputProps<T>) => {
+export const ControlledInput = <T extends FieldValues>(props: ControlledInputProps<T>) => {
+  const { control, name, ...rest } = props
   const {
     field,
     fieldState: { error },

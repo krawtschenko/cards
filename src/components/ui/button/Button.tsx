@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementType, ReactNode, forwardRef } from 'react'
 
 import { Typography } from '@/components/ui/typography/Typography'
 import clsx from 'clsx'
@@ -13,19 +13,27 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
-export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
-  const {
-    as: Component = 'button',
-    children,
-    className,
-    fullWidth,
-    variant = 'primary',
-    ...rest
-  } = props
+type PolymorphicRef<T extends ElementType> = ComponentPropsWithoutRef<T>['ref']
 
-  return (
-    <Component className={clsx(style[variant], fullWidth && style.fullWidth, className)} {...rest}>
-      <Typography variant={'subtitle2'}>{children}</Typography>
-    </Component>
-  )
-}
+export const Button = forwardRef(
+  <T extends ElementType = 'button'>(props: ButtonProps<T>, ref: PolymorphicRef<T>) => {
+    const {
+      as: Component = 'button',
+      children,
+      className,
+      fullWidth,
+      variant = 'primary',
+      ...rest
+    } = props
+
+    return (
+      <Component
+        className={clsx(style[variant], fullWidth && style.fullWidth, className)}
+        ref={ref}
+        {...rest}
+      >
+        <Typography variant={'subtitle2'}>{children}</Typography>
+      </Component>
+    )
+  }
+)

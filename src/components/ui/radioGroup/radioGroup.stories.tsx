@@ -21,5 +21,6 @@ export const Primary: Story = {
   args: {
     data,
     defaultValue: 'Compact',
+    disabled: false,
   },
 }
