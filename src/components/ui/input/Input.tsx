@@ -57,7 +57,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
           </div>
         )}
         {type === 'search' && (
-          <div className={clsx(style.closeIcon, style.icon)} onClick={() => onClearValue?.()}>
+          <div className={clsx(style.closeIcon, style.icon)} onClick={onClearValue}>
             {rest.value && <VscChromeClose />}
           </div>
         )}
