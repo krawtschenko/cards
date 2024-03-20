@@ -17,17 +17,14 @@ import { Typography } from '../typography/Typography'
 export type InputProps = {
   error?: string
   label?: string
+  onClearValue?: () => void
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
-  const { className, error, label, type = 'text', ...rest } = props
+  const { className, error, label, onClearValue, type = 'text', ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
   const showIconHandler = (value: boolean) => setIsVisible(value)
-
-  const clearInputHandler = () => {
-    // onValueChange?.('')
-  }
 
   const generateType = (type: HTMLInputTypeAttribute, showIcon: boolean) => {
     if (type === 'password' && showIcon) {
@@ -60,7 +57,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
           </div>
         )}
         {type === 'search' && (
-          <div className={clsx(style.closeIcon, style.icon)} onClick={clearInputHandler}>
+          <div className={clsx(style.closeIcon, style.icon)} onClick={() => onClearValue?.()}>
             {rest.value && <VscChromeClose />}
           </div>
         )}

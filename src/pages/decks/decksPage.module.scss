@@ -1,7 +1,5 @@
 .root {
   display: grid;
-  align-items: center;
-
   max-width: 1300px;
   margin-inline: auto;
   padding: 30px;
@@ -9,7 +7,7 @@
 
 .inputWrapper {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
 
   .input {

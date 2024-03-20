@@ -31,6 +31,7 @@ export const DecksPage = () => {
           className={style.input}
           label={'Search'}
           onChange={event => setSearch(event.currentTarget.value)}
+          onClearValue={() => setSearch('')}
           type={'search'}
           value={search}
         />
