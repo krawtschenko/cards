@@ -10,13 +10,15 @@ import {
   TableHeadCell,
   TableRow,
 } from '@/components/ui/table/Table'
-import { useGetDecksQuery } from '@/services/base-api'
+import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
 
 import style from './decksPage.module.scss'
 
 export const DecksPage = () => {
   const [search, setSearch] = useState('')
   const { data, isLoading } = useGetDecksQuery({ name: search })
+  const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
+  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -24,12 +26,18 @@ export const DecksPage = () => {
 
   return (
     <div className={style.root}>
-      <Input
-        label={'Search'}
-        onChange={event => setSearch(event.currentTarget.value)}
-        type={'search'}
-        value={search}
-      />
+      <div className={style.inputWrapper}>
+        <Input
+          className={style.input}
+          label={'Search'}
+          onChange={event => setSearch(event.currentTarget.value)}
+          type={'search'}
+          value={search}
+        />
+        <Button disabled={isDeckBeingCreated} onClick={() => createDeck({ name: 'test deck' })}>
+          Add deck
+        </Button>
+      </div>
       <Table className={style.table}>
         <TableHead>
           <TableRow>
@@ -49,7 +57,9 @@ export const DecksPage = () => {
                 <TableData>{new Date(updated).toLocaleDateString('pl')}</TableData>
                 <TableData>{author.name}</TableData>
                 <TableData>
-                  <Button>Edit</Button>
+                  <Button disabled={isDeckBeingDeleted} onClick={() => deleteDeck(id)}>
+                    Delete
+                  </Button>
                 </TableData>
               </TableRow>
             )
