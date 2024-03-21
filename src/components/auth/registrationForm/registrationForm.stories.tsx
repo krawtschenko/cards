@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { FormValues, RegistrationForm } from './RegistrationForm'
+import { FormValues, RegistrationForm } from './registrationForm'
 
 const meta = {
   component: RegistrationForm,

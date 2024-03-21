@@ -1,7 +1,7 @@
 import emailIcon from '@/assets/icons/email_icon.png'
-import { Button } from '@/components/ui/button/Button'
-import { Card } from '@/components/ui/card/Card'
-import { Typography } from '@/components/ui/typography/Typography'
+import { Button } from '@/components/ui/button/button'
+import { Card } from '@/components/ui/card/card'
+import { Typography } from '@/components/ui/typography/typography'
 
 import style from './checkForm.module.scss'
 

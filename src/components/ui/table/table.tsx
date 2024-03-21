@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import { Typography } from '@/components/ui/typography/Typography'
+import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
 
 import style from './table.module.scss'

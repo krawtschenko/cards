@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button/Button'
-import { Input } from '@/components/ui/input/Input'
+import { Button } from '@/components/ui/button/button'
+import { Input } from '@/components/ui/input/input'
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeadCell,
   TableRow,
-} from '@/components/ui/table/Table'
+} from '@/components/ui/table/table'
 import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
 
 import style from './decksPage.module.scss'

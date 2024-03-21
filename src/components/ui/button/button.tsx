@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode, forwardRef } from 'react'
 
-import { Typography } from '@/components/ui/typography/Typography'
+import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
 
 import style from './button.module.scss'

@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux'
 
-import { Header } from '@/components/layout/header/Header'
+import { Header } from '@/components/layout/header/header'
 import { Router } from '@/router'
 import { store } from '@/services/store'
 

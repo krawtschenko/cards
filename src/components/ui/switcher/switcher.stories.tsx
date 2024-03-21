@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Data, Switcher } from './Switcher'
+import { Data, Switcher } from './switcher'
 
 const meta = {
   component: Switcher,

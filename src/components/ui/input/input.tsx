@@ -6,13 +6,12 @@ import {
   useState,
 } from 'react'
 
+import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
 import { LuSearch } from 'react-icons/lu'
 import { VscChromeClose, VscEye, VscEyeClosed } from 'react-icons/vsc'
 
 import style from './input.module.scss'
-
-import { Typography } from '../typography/Typography'
 
 export type InputProps = {
   error?: string

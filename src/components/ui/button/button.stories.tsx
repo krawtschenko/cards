@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Typography } from '@/components/ui/typography/Typography'
+import { Typography } from '@/components/ui/typography/typography'
 import { FiLogIn } from 'react-icons/fi'
 
-import { Button } from './Button'
+import { Button } from './button'
 
 const meta = {
   argTypes: {

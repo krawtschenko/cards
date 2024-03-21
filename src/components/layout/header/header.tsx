@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import logo from '@/assets/icons/logo.svg'
-import { Button } from '@/components/ui/button/Button'
-import { Typography } from '@/components/ui/typography/Typography'
+import { Logo } from '@/assets/icons/logo'
+import { Button } from '@/components/ui/button/button'
+import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
 
 import style from './header.module.scss'
@@ -16,7 +16,7 @@ export const Header = ({ className, loggedIn, ...rest }: HeaderProps) => {
   return (
     <header {...rest} className={clsx(style.header, className)}>
       <div className={style.logoWrapper}>
-        <img alt={'logo'} className={style.logo} src={logo} />
+        <Logo />
       </div>
       {loggedIn ? (
         <div className={style.userWrapper}>
