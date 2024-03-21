@@ -10,13 +10,27 @@ import {
   TableHeadCell,
   TableRow,
 } from '@/components/ui/table/table'
-import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+  useGetMinMaxCardsQuery,
+} from '@/services/base-api'
 
 import style from './decksPage.module.scss'
 
 export const DecksPage = () => {
   const [search, setSearch] = useState('')
-  const { data, isLoading } = useGetDecksQuery({ name: search })
+  const { data: minMaxData } = useGetMinMaxCardsQuery()
+  const { data, isLoading } = useGetDecksQuery(
+    {
+      maxCardsCount: minMaxData?.max,
+      minCardsCount: minMaxData?.min,
+      name: search,
+    },
+    { skip: !minMaxData }
+  )
+
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
   const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
 
