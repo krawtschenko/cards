@@ -1,4 +1,4 @@
-import emailIcon from '@/assets/email_icon.png'
+import emailIcon from '@/assets/icons/email_icon.png'
 import { Button } from '@/components/ui/button/Button'
 import { Card } from '@/components/ui/card/Card'
 import { Typography } from '@/components/ui/typography/Typography'

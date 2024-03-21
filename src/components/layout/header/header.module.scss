@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 12px 136px;
+
+  background-color: var(--color-dark-700);
+
+  .logoWrapper {
+    display: flex;
+    align-items: center;
+    width: 156px;
+
+    .logo {
+      width: 100%;
+    }
+  }
+
+  .userWrapper {
+    display: flex;
+    column-gap: 14px;
+    align-items: center;
+  }
+}
