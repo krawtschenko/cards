@@ -16,14 +16,19 @@ import style from './profile.module.scss'
 import { profileSchema } from './profileSchema'
 
 export type FormValues = z.infer<typeof profileSchema>
+type ProfileProps = {
+  email: string
+  name: string
+  onSubmit: (data: FormValues) => void
+}
 
-export const Profile = () => {
+export const Profile = (props: ProfileProps) => {
   const { control, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: { name: '' },
     resolver: zodResolver(profileSchema),
   })
   const onSubmit = (data: FormValues) => {
-    console.log(data)
+    props.onSubmit(data)
     setIsEdit(false)
     reset()
   }
@@ -48,14 +53,14 @@ export const Profile = () => {
         {!isEdit ? (
           <>
             <div className={style.nameWrapper}>
-              <Typography variant={'h2'}>Name</Typography>
+              <Typography variant={'h2'}>{props.name}</Typography>
               <Button className={style.edit} noTypography onClick={() => setIsEdit(true)}>
                 <PiPencilSimpleLineBold />
               </Button>
             </div>
 
             <Typography className={style.email} variant={'body2'}>
-              j&johnson@gmail.com
+              {props.email}
             </Typography>
 
             <Button className={style.button} noTypography variant={'secondary'}>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Profile } from './profile'
+import { FormValues, Profile } from './profile'
 
 const meta = {
   component: Profile,
@@ -11,4 +11,10 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    email: 'eugeniuszkravchenko@mail.pl',
+    name: 'Eugen',
+    onSubmit: (data: FormValues) => console.log(data),
+  },
+}
