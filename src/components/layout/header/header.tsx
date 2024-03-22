@@ -22,7 +22,7 @@ export const Header = forwardRef<ElementRef<'header'>, HeaderProps>(
         {loggedIn ? (
           <div className={style.userWrapper}>
             <Typography as={'a'} variant={'h4'}>
-              Slawomir
+              Name
             </Typography>
             {/*<DropdownHeader />*/}
           </div>

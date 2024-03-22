@@ -10,6 +10,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   children: ReactNode
   className?: string
   fullWidth?: boolean
+  noTypography?: boolean
   variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
@@ -22,6 +23,7 @@ export const Button = forwardRef(
       children,
       className,
       fullWidth,
+      noTypography = false,
       variant = 'primary',
       ...rest
     } = props
@@ -32,7 +34,7 @@ export const Button = forwardRef(
         ref={ref}
         {...rest}
       >
-        <Typography variant={'subtitle2'}>{children}</Typography>
+        {noTypography ? children : <Typography variant={'subtitle2'}>{children}</Typography>}
       </Component>
     )
   }
