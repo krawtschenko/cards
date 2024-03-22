@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import photo from '@/assets/images/photo.png'
 import { Button } from '@/components/ui/button/button'
 import { Card } from '@/components/ui/card/card'
 import { ControlledInput } from '@/components/ui/input/controlledInput'
@@ -17,18 +16,19 @@ import { profileSchema } from './profileSchema'
 
 export type FormValues = z.infer<typeof profileSchema>
 type ProfileProps = {
+  avatar: string
   email: string
   name: string
   onSubmit: (data: FormValues) => void
 }
 
-export const Profile = (props: ProfileProps) => {
+export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
   const { control, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: { name: '' },
     resolver: zodResolver(profileSchema),
   })
-  const onSubmit = (data: FormValues) => {
-    props.onSubmit(data)
+  const onSubmitHandler = (data: FormValues) => {
+    onSubmit(data)
     setIsEdit(false)
     reset()
   }
@@ -41,7 +41,7 @@ export const Profile = (props: ProfileProps) => {
       </Typography>
 
       <div className={style.photoWrapper}>
-        <img alt={'photo'} src={photo} />
+        <img alt={'photo'} src={avatar} />
         {!isEdit && (
           <Button className={style.edit} noTypography variant={'secondary'}>
             <PiPencilSimpleLineBold />
@@ -53,14 +53,14 @@ export const Profile = (props: ProfileProps) => {
         {!isEdit ? (
           <>
             <div className={style.nameWrapper}>
-              <Typography variant={'h2'}>{props.name}</Typography>
+              <Typography variant={'h2'}>{name}</Typography>
               <Button className={style.edit} noTypography onClick={() => setIsEdit(true)}>
                 <PiPencilSimpleLineBold />
               </Button>
             </div>
 
             <Typography className={style.email} variant={'body2'}>
-              {props.email}
+              {email}
             </Typography>
 
             <Button className={style.button} noTypography variant={'secondary'}>
@@ -69,7 +69,7 @@ export const Profile = (props: ProfileProps) => {
             </Button>
           </>
         ) : (
-          <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <form className={style.form} onSubmit={handleSubmit(onSubmitHandler)}>
             <ControlledInput
               className={style.input}
               control={control}
