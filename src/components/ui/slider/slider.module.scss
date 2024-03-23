@@ -1,4 +1,4 @@
-.form {
+.wrapper {
   display: flex;
   column-gap: 12px;
   align-items: center;
@@ -64,6 +64,34 @@
 
     &:hover {
       box-shadow: 0 0 10px var(--color-accent-500);
+    }
+  }
+
+  &[aria-disabled='true'] {
+    .rectangle {
+      color: var(--color-dark-500);
+      border-color: var(--color-dark-500);
+    }
+
+    .sliderRoot {
+      cursor: default;
+    }
+
+    .sliderTrack {
+      background-color: var(--color-dark-700);
+    }
+
+    .sliderRange {
+      background-color: var(--color-dark-500);
+    }
+
+    .sliderThumb {
+      background-color: var(--color-light-900);
+      border-color: var(--color-dark-500);
+
+      &:hover {
+        box-shadow: none;
+      }
     }
   }
 }
