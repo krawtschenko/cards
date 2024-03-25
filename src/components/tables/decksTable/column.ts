@@ -1,4 +1,13 @@
-import { Column } from '@/pages/decks/decks'
+export type Column = {
+  key: string
+  sortable: boolean
+  title: string
+}
+
+export type Sort = {
+  direction: 'asc' | 'desc'
+  key: string
+} | null
 
 export const columns: Column[] = [
   {
@@ -22,7 +31,7 @@ export const columns: Column[] = [
     title: 'Author',
   },
   {
-    key: '',
+    key: 'actions',
     sortable: false,
     title: '',
   },

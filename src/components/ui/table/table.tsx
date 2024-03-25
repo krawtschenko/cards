@@ -1,7 +1,9 @@
 import { ComponentPropsWithoutRef } from 'react'
 
+import { Column, Sort } from '@/components/tables/decksTable/column'
 import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
 import style from './table.module.scss'
 
@@ -31,10 +33,68 @@ export const TableHeadCell = ({ className, ...rest }: ComponentPropsWithoutRef<'
   )
 }
 
-export const TableData = ({ ...rest }: ComponentPropsWithoutRef<'td'>) => {
+export const TableData = ({
+  className,
+  typography = true,
+  ...rest
+}: ComponentPropsWithoutRef<'td'> & { typography?: boolean }) => {
   return (
-    <td className={style.tableData} {...rest}>
-      <Typography variant={'body2'}>{rest.children}</Typography>
+    <td className={clsx(style.tableData, className)} {...rest}>
+      {typography ? <Typography variant={'body2'}>{rest.children}</Typography> : rest.children}
     </td>
+  )
+}
+
+export const TableHeader = ({
+  columns,
+  onSort,
+  sort,
+  ...rest
+}: ComponentPropsWithoutRef<'thead'> & {
+  columns: Column[]
+  onSort?: (sort: Sort) => void
+  sort?: Sort
+}) => {
+  const handleSort = (key: string, sortable: boolean) => () => {
+    if (!onSort || !sortable) {
+      return
+    }
+
+    if (sort?.key !== key) {
+      return onSort({ direction: 'asc', key })
+    }
+
+    if (sort.direction === 'desc') {
+      return onSort(null)
+    }
+
+    return onSort({
+      direction: sort?.direction === 'asc' ? 'desc' : 'asc',
+      key,
+    })
+  }
+  const arrowGenerate = (key: string, sortable: boolean) => {
+    if (!sortable) {
+      return
+    } else {
+      return (
+        sort &&
+        sort.key === key &&
+        (sort.direction === 'asc' ? <IoIosArrowUp /> : <IoIosArrowDown />)
+      )
+    }
+  }
+
+  return (
+    <TableHead {...rest}>
+      <TableRow>
+        {columns.map(({ key, sortable, title }) => (
+          <TableHeadCell key={key} onClick={handleSort(key, sortable)}>
+            {title}
+            {arrowGenerate(key, sortable)}
+          </TableHeadCell>
+        ))}
+      </TableRow>
+    </TableHead>
   )
 }
