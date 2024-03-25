@@ -24,7 +24,9 @@ export const TableRow = ({ className, ...rest }: ComponentPropsWithoutRef<'tr'>)
 export const TableHeadCell = ({ className, ...rest }: ComponentPropsWithoutRef<'th'>) => {
   return (
     <th className={clsx(style.tableHeadCell, className)} {...rest}>
-      <Typography variant={'subtitle2'}>{rest.children}</Typography>
+      <Typography className={style.typography} variant={'subtitle2'}>
+        {rest.children}
+      </Typography>
     </th>
   )
 }

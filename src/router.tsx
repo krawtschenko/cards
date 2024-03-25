@@ -1,13 +1,13 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { LoginForm } from '@/components/auth/loginForm/loginForm'
-import { DecksPage } from '@/pages/decks/DecksPage'
+import { Decks } from '@/pages/decks/decks'
 
 const router = createBrowserRouter([
   {
     children: [
       {
-        element: <DecksPage />,
+        element: <Decks />,
         path: '/',
       },
     ],

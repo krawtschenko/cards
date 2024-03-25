@@ -7,6 +7,13 @@
   padding: 6px 24px;
   text-align: left;
   background-color: var(--color-dark-500);
+
+  .typography {
+    cursor: pointer;
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+  }
 }
 
 .tableData {

@@ -31,6 +31,7 @@ export type GetDecksArgs = {
   maxCardsCount?: number
   minCardsCount?: number
   name?: string
+  orderBy?: null | string
   userId?: string
 }
 

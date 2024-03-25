@@ -8,6 +8,7 @@ import { Typography } from '@/components/ui/typography/typography'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FiLogIn } from 'react-icons/fi'
 import { PiPencilSimpleLineBold } from 'react-icons/pi'
+import { TbPhotoSensor2 } from 'react-icons/tb'
 import { z } from 'zod'
 
 import style from './profile.module.scss'
@@ -44,7 +45,7 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
         <img alt={'photo'} src={avatar} />
         {!isEdit && (
           <Button className={style.edit} noTypography variant={'secondary'}>
-            <PiPencilSimpleLineBold />
+            <TbPhotoSensor2 />
           </Button>
         )}
       </div>
