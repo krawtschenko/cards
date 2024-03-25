@@ -22,7 +22,7 @@ export const DecksTable = (props: DecksTableProps) => {
   const { currentUserId, decks, onDeleteClick, onEditClick, onSort, sort } = props
 
   // const handleEditClick = (id: string) => () => onEditClick(id)
-  const handleDeleteClick = (id: string) => () => onDeleteClick(id)
+  const handleDeleteClick = (id: string) => onDeleteClick(id)
 
   return (
     <Table className={style.table}>
@@ -43,7 +43,11 @@ export const DecksTable = (props: DecksTableProps) => {
                   <Button className={style.icon} typography={false}>
                     <PiPencilLine />
                   </Button>
-                  <Button className={style.icon} typography={false}>
+                  <Button
+                    className={style.icon}
+                    onClick={() => handleDeleteClick(id)}
+                    typography={false}
+                  >
                     <PiTrash />
                   </Button>
                 </div>
