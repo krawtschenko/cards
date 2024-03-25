@@ -2,10 +2,7 @@ export type DecksResponse = {
   items: Deck[]
   pagination: Pagination
 }
-export type DeckAuthor = {
-  id: string
-  name: string
-}
+
 export type Deck = {
   author: DeckAuthor
   cardsCount: number
@@ -17,6 +14,12 @@ export type Deck = {
   updated: string
   userId: string
 }
+
+export type DeckAuthor = {
+  id: string
+  name: string
+}
+
 export type Pagination = {
   currentPage: number
   itemsPerPage: number
