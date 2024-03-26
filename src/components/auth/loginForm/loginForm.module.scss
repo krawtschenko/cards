@@ -3,35 +3,35 @@
   text-align: center;
 }
 
-.wrapper {
+.form {
   margin-top: 27px;
-}
 
-.password {
-  margin-top: 24px;
-}
-
-.checkboxWrapper {
-  position: relative;
-  height: 36px;
-  margin-top: 12px;
-
-  .checkbox {
-    position: absolute;
-    left: -9px;
+  .password {
+    margin-top: 24px;
   }
-}
 
-.forgotWrapper {
-  text-align: end;
+  .checkboxWrapper {
+    position: relative;
+    height: 36px;
+    margin-top: 12px;
 
-  .forgot {
-    cursor: pointer;
+    .checkbox {
+      position: absolute;
+      left: -9px;
+    }
   }
-}
 
-.button {
-  margin-top: 66px;
+  .forgotWrapper {
+    text-align: end;
+
+    .forgot {
+      cursor: pointer;
+    }
+  }
+
+  .button {
+    margin-top: 60px;
+  }
 }
 
 .underTitle {

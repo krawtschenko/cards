@@ -59,9 +59,7 @@ export const RegistrationForm = ({ onSubmit }: SignUpProps) => {
           type={'password'}
         />
 
-        <Button className={style.button} fullWidth type={'submit'}>
-          Sign Up
-        </Button>
+        <Button className={style.button} fullWidth text={'Sign Up'} type={'submit'} />
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>

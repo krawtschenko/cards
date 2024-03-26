@@ -3,18 +3,18 @@
   text-align: center;
 }
 
-.wrapper {
+.form {
   margin-top: 51px;
-}
 
-.info {
-  display: block;
-  margin-top: 19px;
-  color: var(--color-dark-100);
-}
+  .info {
+    display: block;
+    margin-top: 19px;
+    color: var(--color-dark-100);
+  }
 
-.button {
-  margin-top: 65px;
+  .button {
+    margin-top: 65px;
+  }
 }
 
 .underTitle {

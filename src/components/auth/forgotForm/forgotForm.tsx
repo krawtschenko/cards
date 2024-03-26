@@ -43,9 +43,7 @@ export const ForgotForm = ({ onSubmit }: ForgotProps) => {
           Enter your email address and we will send you further instructions
         </Typography>
 
-        <Button className={style.button} fullWidth type={'submit'}>
-          Send Instructions
-        </Button>
+        <Button className={style.button} fullWidth text={'Send Instructions'} type={'submit'} />
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>

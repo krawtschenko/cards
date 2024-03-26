@@ -7,10 +7,10 @@ import style from './button.module.scss'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
-  children: ReactNode
   className?: string
   fullWidth?: boolean
-  typography?: boolean
+  icon?: ReactNode
+  text?: ReactNode
   variant?: 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
@@ -20,10 +20,10 @@ export const Button = forwardRef(
   <T extends ElementType = 'button'>(props: ButtonProps<T>, ref: PolymorphicRef<T>) => {
     const {
       as: Component = 'button',
-      children,
       className,
       fullWidth,
-      typography = true,
+      icon,
+      text,
       variant = 'primary',
       ...rest
     } = props
@@ -34,7 +34,8 @@ export const Button = forwardRef(
         ref={ref}
         {...rest}
       >
-        {typography ? <Typography variant={'subtitle2'}>{children}</Typography> : children}
+        {icon && <div className={style.icon}>{icon}</div>}
+        {text && <Typography variant={'subtitle2'}>{text}</Typography>}
       </Component>
     )
   }

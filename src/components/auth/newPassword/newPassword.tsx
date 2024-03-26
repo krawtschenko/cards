@@ -44,9 +44,7 @@ export const NewPassword = ({ onSubmit }: NewPasswordProps) => {
           Create new password and we will send you further instructions to email
         </Typography>
 
-        <Button className={style.button} fullWidth type={'submit'}>
-          Create New Password
-        </Button>
+        <Button className={style.button} fullWidth text={'Create New Password'} type={'submit'} />
       </form>
     </Card>
   )

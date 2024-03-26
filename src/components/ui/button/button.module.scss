@@ -19,6 +19,12 @@
 
   transition: all 0.3s ease;
 
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &:focus-visible {
     outline: 2px solid var(--color-info-500);
   }

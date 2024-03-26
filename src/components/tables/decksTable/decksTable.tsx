@@ -41,19 +41,13 @@ export const DecksTable = (props: DecksTableProps) => {
               <TableData className={style.tableData}>{author.name}</TableData>
               <TableData className={style.tableDataIcons} typography={false}>
                 <div className={style.actions}>
-                  <Button as={Link} className={style.icon} typography={false}>
-                    <PiPlayCircle />
-                  </Button>
-                  <Button className={style.icon} typography={false}>
-                    <PiPencilLine />
-                  </Button>
+                  <Button as={Link} className={style.icon} icon={<PiPlayCircle />} />
+                  <Button className={style.icon} icon={<PiPencilLine />} />
                   <Button
                     className={style.icon}
+                    icon={<PiTrash />}
                     onClick={() => handleDeleteClick(id)}
-                    typography={false}
-                  >
-                    <PiTrash />
-                  </Button>
+                  />
                 </div>
               </TableData>
             </TableRow>

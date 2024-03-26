@@ -22,9 +22,13 @@ export const CheckForm = ({ email }: CheckFormProps) => {
         We’ve sent an Email with instructions to {email}
       </Typography>
 
-      <Button as={'a'} className={style.button} fullWidth type={'submit'}>
-        Back to Sign In
-      </Button>
+      <Button
+        as={'a'}
+        className={style.button}
+        fullWidth
+        text={'Back to Sign In'}
+        type={'submit'}
+      />
     </Card>
   )
 }

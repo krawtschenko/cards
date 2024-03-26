@@ -66,9 +66,7 @@ export const LoginForm = ({ onSubmit }: LoginProps) => {
           </Typography>
         </div>
 
-        <Button className={style.button} fullWidth type={'submit'}>
-          Sign In
-        </Button>
+        <Button className={style.button} fullWidth text={'Sign In'} type={'submit'} />
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>

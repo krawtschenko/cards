@@ -44,9 +44,7 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
       <div className={style.photoWrapper}>
         <img alt={'photo'} src={avatar} />
         {!isEdit && (
-          <Button className={style.edit} noTypography variant={'secondary'}>
-            <TbPhotoSensor2 />
-          </Button>
+          <Button className={style.edit} icon={<TbPhotoSensor2 />} variant={'secondary'} />
         )}
       </div>
 
@@ -55,19 +53,23 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
           <>
             <div className={style.nameWrapper}>
               <Typography variant={'h2'}>{name}</Typography>
-              <Button className={style.edit} noTypography onClick={() => setIsEdit(true)}>
-                <PiPencilSimpleLineBold />
-              </Button>
+              <Button
+                className={style.edit}
+                icon={<PiPencilSimpleLineBold />}
+                onClick={() => setIsEdit(true)}
+              />
             </div>
 
             <Typography className={style.email} variant={'body2'}>
               {email}
             </Typography>
 
-            <Button className={style.button} noTypography variant={'secondary'}>
-              <FiLogIn />
-              <Typography variant={'subtitle2'}>Logout</Typography>
-            </Button>
+            <Button
+              className={style.button}
+              icon={<FiLogIn />}
+              text={'Logout'}
+              variant={'secondary'}
+            />
           </>
         ) : (
           <form className={style.form} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -79,9 +81,7 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
               placeholder={'Nickname'}
             />
 
-            <Button fullWidth type={'submit'}>
-              Save Changes
-            </Button>
+            <Button fullWidth text={'Save Changes'} type={'submit'} />
           </form>
         )}
       </div>

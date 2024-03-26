@@ -29,7 +29,7 @@ export const Header = forwardRef<ElementRef<'header'>, HeaderProps>(
               {/*<DropdownHeader />*/}
             </div>
           ) : (
-            <Button variant={'secondary'}>Sign In</Button>
+            <Button text={'Sign In'} variant={'secondary'} />
           )}
         </Container>
       </header>
