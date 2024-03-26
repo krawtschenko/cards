@@ -8,6 +8,7 @@ import { Loader } from '@/components/ui/loader/loader'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
 import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
+import { PiTrash } from 'react-icons/pi'
 
 import style from './decksPage.module.scss'
 
@@ -54,7 +55,7 @@ export const DecksPage = () => {
 
           <Slider label={'Number of cards'} max={100} min={0} />
 
-          <Button onClick={() => createDeck({ name: 'test deck' })}>Clear Filter</Button>
+          <Button icon={<PiTrash />} text={'Clear Filter'} />
         </div>
 
         <DecksTable
