@@ -24,7 +24,11 @@ export const Slider = forwardRef<ElementRef<typeof SliderRadix.Root>, SliderProp
 
     return (
       <div className={clsx(style.root, className)}>
-        {label && <Typography variant={'body2'}>{label}</Typography>}
+        {label && (
+          <Typography aria-disabled={rest.disabled} className={style.label} variant={'body2'}>
+            {label}
+          </Typography>
+        )}
         <div aria-disabled={rest.disabled} className={style.wrapper}>
           <div className={style.rectangle}>
             <Typography variant={'body1'}>{value[0]}</Typography>

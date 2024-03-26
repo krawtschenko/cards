@@ -22,7 +22,11 @@ export const Switcher = forwardRef<ElementRef<typeof Tabs.Root>, SwitcherProps>(
   ({ className, data, disabled, label, ...rest }, ref) => {
     return (
       <div className={clsx(style.root, className)}>
-        {label && <Typography variant={'body2'}>{label}</Typography>}
+        {label && (
+          <Typography aria-disabled={disabled} className={style.label} variant={'body2'}>
+            {label}
+          </Typography>
+        )}
         <Tabs.Root className={style.tabsRoot} orientation={'vertical'} ref={ref} {...rest}>
           <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
             {data.map(({ value }, index) => (

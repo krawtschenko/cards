@@ -1,3 +1,11 @@
+.root {
+  .label {
+    &[aria-disabled='true'] {
+      color: var(--color-dark-300);
+    }
+  }
+}
+
 .tabsRoot {
   margin-top: 2px;
 
