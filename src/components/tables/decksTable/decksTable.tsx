@@ -38,7 +38,7 @@ export const DecksTable = (props: DecksTableProps) => {
               <TableData className={style.tableData}>
                 {new Date(updated).toLocaleDateString('pl')}
               </TableData>
-              <TableData className={style.tableData}>{author.name}</TableData>
+              <TableData className={style.tableDataAutor}>{author.name}</TableData>
               <TableData className={style.tableDataIcons} typography={false}>
                 <div className={style.actions}>
                   <Button as={Link} className={style.icon} icon={<PiPlayCircle />} />

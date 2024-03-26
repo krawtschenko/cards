@@ -35,7 +35,6 @@ export const Slider = forwardRef<ElementRef<typeof SliderRadix.Root>, SliderProp
           </div>
           <SliderRadix.Root
             className={style.sliderRoot}
-            minStepsBetweenThumbs={1}
             onValueChange={onValueChange}
             value={value}
             {...rest}

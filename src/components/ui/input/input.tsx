@@ -35,9 +35,11 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
 
   return (
     <div aria-disabled={rest.disabled} className={clsx(style.root, className)}>
-      <Typography className={style.label} variant={'body2'}>
-        {label}
-      </Typography>
+      {label && (
+        <Typography className={style.label} variant={'body2'}>
+          {label}
+        </Typography>
+      )}
       <div className={clsx(style.wrapper, error && style.error)}>
         {type === 'search' && (
           <div className={clsx(style.searchIcon, style.icon)}>

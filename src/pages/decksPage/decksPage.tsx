@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input/input'
 import { Loader } from '@/components/ui/loader/loader'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
+import { Typography } from '@/components/ui/typography/typography'
 import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
 import { PiTrash } from 'react-icons/pi'
 
@@ -35,9 +36,17 @@ export const DecksPage = () => {
   }
 
   return (
-    <>
-      <div className={style.root}>
-        <div className={style.paramsWrapper}>
+    <div className={style.root}>
+      <div className={style.head}>
+        <Typography variant={'h1'}>Decks list</Typography>
+        <Button
+          className={style.button}
+          onClick={() => createDeck({ name: 'Jeszcze Polska nie zginęła' })}
+          text={'Add New Deck'}
+        />
+      </div>
+      <div className={style.deck}>
+        <div className={style.params}>
           <Input
             className={style.input}
             onChange={event => setSearch(event.currentTarget.value)}
@@ -55,7 +64,12 @@ export const DecksPage = () => {
 
           <Slider label={'Number of cards'} max={100} min={0} />
 
-          <Button icon={<PiTrash />} text={'Clear Filter'} />
+          <Button
+            className={style.button}
+            icon={<PiTrash />}
+            text={'Clear Filter'}
+            variant={'secondary'}
+          />
         </div>
 
         <DecksTable
@@ -66,6 +80,6 @@ export const DecksPage = () => {
           sort={sort}
         />
       </div>
-    </>
+    </div>
   )
 }
