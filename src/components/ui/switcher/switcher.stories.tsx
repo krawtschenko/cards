@@ -24,5 +24,6 @@ export const Primary: Story = {
     data,
     defaultValue: data[1].value,
     disabled: false,
+    label: 'TEST',
   },
 }

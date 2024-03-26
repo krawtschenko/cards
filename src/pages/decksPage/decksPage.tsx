@@ -5,6 +5,8 @@ import { DecksTable } from '@/components/tables/decksTable/decksTable'
 import { Button } from '@/components/ui/button/button'
 import { Input } from '@/components/ui/input/input'
 import { Loader } from '@/components/ui/loader/loader'
+import { Slider } from '@/components/ui/slider/slider'
+import { Switcher } from '@/components/ui/switcher/switcher'
 import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
 
 import style from './decksPage.module.scss'
@@ -34,19 +36,34 @@ export const DecksPage = () => {
   return (
     <>
       <div className={style.root}>
-        <div className={style.inputWrapper}>
+        <div className={style.paramsWrapper}>
           <Input
             className={style.input}
-            label={'Search'}
             onChange={event => setSearch(event.currentTarget.value)}
             onClearValue={() => setSearch('')}
+            placeholder={'Input search'}
             type={'search'}
             value={search}
           />
-          <Button onClick={() => createDeck({ name: 'test deck' })}>Add deck</Button>
+
+          <Switcher
+            data={[{ value: 'My Cards' }, { value: 'All Cards' }]}
+            defaultValue={'All Cards'}
+            label={'Show decks cards'}
+          />
+
+          <Slider label={'Number of cards'} max={100} min={0} />
+
+          <Button onClick={() => createDeck({ name: 'test deck' })}>Clear Filter</Button>
         </div>
 
-        <DecksTable decks={decks?.items} onDeleteClick={deleteDeck} onSort={setSort} sort={sort} />
+        <DecksTable
+          className={style.table}
+          decks={decks?.items}
+          onDeleteClick={deleteDeck}
+          onSort={setSort}
+          sort={sort}
+        />
       </div>
     </>
   )

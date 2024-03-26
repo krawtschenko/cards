@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     disabled: false,
+    label: 'Test',
     max: 100,
     min: 0,
   },

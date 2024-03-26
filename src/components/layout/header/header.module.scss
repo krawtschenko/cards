@@ -1,12 +1,13 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   width: 100%;
   padding: 12px 136px;
-
   background-color: var(--color-dark-700);
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .logoWrapper {
     display: flex;

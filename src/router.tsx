@@ -1,6 +1,7 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { LoginForm } from '@/components/auth/loginForm/loginForm'
+import { Container } from '@/components/layout/container/container'
 import { DecksPage } from '@/pages/decksPage/decksPage'
 
 const router = createBrowserRouter([
@@ -27,5 +28,11 @@ export const Router = () => {
 function PrivateRoutes() {
   const isAuthenticated = true
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+  return isAuthenticated ? (
+    <Container>
+      <Outlet />
+    </Container>
+  ) : (
+    <Navigate to={'/login'} />
+  )
 }

@@ -11,6 +11,7 @@ type SwitcherProps = {
   data: Data[]
   defaultValue?: string
   disabled?: boolean
+  label?: string
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export type Data = {
@@ -18,32 +19,30 @@ export type Data = {
 }
 
 export const Switcher = forwardRef<ElementRef<typeof Tabs.Root>, SwitcherProps>(
-  ({ className, data, disabled, ...rest }, ref) => {
+  ({ className, data, disabled, label, ...rest }, ref) => {
     return (
-      <Tabs.Root
-        className={clsx(style.tabsRoot, className)}
-        orientation={'vertical'}
-        ref={ref}
-        {...rest}
-      >
-        <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
-          {data.map(({ value }, index) => (
-            <Tabs.Trigger
-              className={style.tabsTrigger}
-              disabled={disabled}
-              key={index}
-              value={value}
-            >
-              <Typography variant={'body1'}>{value}</Typography>
-            </Tabs.Trigger>
-          ))}
-        </Tabs.List>
-        {/*{data.map(({ value }, index) => (*/}
-        {/*  <Tabs.Content key={index} value={value}>*/}
-        {/*    Tab {value} content*/}
-        {/*  </Tabs.Content>*/}
-        {/*))}*/}
-      </Tabs.Root>
+      <div className={clsx(style.root, className)}>
+        {label && <Typography variant={'body2'}>{label}</Typography>}
+        <Tabs.Root className={style.tabsRoot} orientation={'vertical'} ref={ref} {...rest}>
+          <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
+            {data.map(({ value }, index) => (
+              <Tabs.Trigger
+                className={style.tabsTrigger}
+                disabled={disabled}
+                key={index}
+                value={value}
+              >
+                <Typography variant={'body1'}>{value}</Typography>
+              </Tabs.Trigger>
+            ))}
+          </Tabs.List>
+          {/*{data.map(({ value }, index) => (*/}
+          {/*  <Tabs.Content key={index} value={value}>*/}
+          {/*    Tab {value} content*/}
+          {/*  </Tabs.Content>*/}
+          {/*))}*/}
+        </Tabs.Root>
+      </div>
     )
   }
 )
