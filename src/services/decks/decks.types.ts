@@ -42,3 +42,8 @@ export type CreateDeckArgs = {
   isPrivate?: boolean
   name: string
 }
+
+export type GetMinMaxCards = {
+  max: number
+  min: number
+}

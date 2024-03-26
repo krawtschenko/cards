@@ -1,4 +1,10 @@
-import { CreateDeckArgs, Deck, DecksResponse, GetDecksArgs } from '@/services/decks/decks.types'
+import {
+  CreateDeckArgs,
+  Deck,
+  DecksResponse,
+  GetDecksArgs,
+  GetMinMaxCards,
+} from '@/services/decks/decks.types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const baseApi = createApi({
@@ -32,7 +38,7 @@ export const baseApi = createApi({
         url: 'v2/decks',
       }),
     }),
-    getMinMaxCards: builder.query<any, void>({
+    getMinMaxCards: builder.query<GetMinMaxCards, void>({
       query: () => ({
         url: `v2/decks/min-max-cards`,
       }),

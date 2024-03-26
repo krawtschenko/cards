@@ -15,7 +15,7 @@ export const Primary: Story = {
   args: {
     disabled: false,
     label: 'Test',
-    max: 100,
+    max: 10,
     min: 0,
   },
 }
