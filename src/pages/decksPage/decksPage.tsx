@@ -8,12 +8,7 @@ import { Loader } from '@/components/ui/loader/loader'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
 import { Typography } from '@/components/ui/typography/typography'
-import {
-  useCreateDeckMutation,
-  useDeleteDeckMutation,
-  useGetDecksQuery,
-  useGetMinMaxCardsQuery,
-} from '@/services/base-api'
+import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
 import { PiTrash } from 'react-icons/pi'
 
 import style from './decksPage.module.scss'
@@ -25,7 +20,7 @@ export const DecksPage = () => {
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
 
-  const [numberCards, setNumberCards] = useState<number[]>([0, 100])
+  const [numberCards, setNumberCards] = useState<number[]>([0, 200])
 
   const {
     currentData: decksCurrentData,
@@ -39,10 +34,6 @@ export const DecksPage = () => {
   })
 
   const decks = decksCurrentData ?? decksData
-
-  const { data } = useGetMinMaxCardsQuery()
-
-  console.log(data)
 
   if (isLoading) {
     return <Loader />
