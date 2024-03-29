@@ -1,7 +1,7 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import { LoginForm } from '@/components/auth/loginForm/loginForm'
 import { Container } from '@/components/layout/container/container'
+import { LoginPage } from '@/pages/auth/loginPage/loginPage'
 import { DecksPage } from '@/pages/decksPage/decksPage'
 
 const router = createBrowserRouter([
@@ -15,8 +15,11 @@ const router = createBrowserRouter([
     element: <PrivateRoutes />,
   },
   {
-    // eslint-disable-next-line no-console
-    element: <LoginForm onSubmit={() => console.log('login')} />,
+    element: (
+      <Container>
+        <LoginPage />
+      </Container>
+    ),
     path: '/login',
   },
 ])

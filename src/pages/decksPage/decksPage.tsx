@@ -8,25 +8,24 @@ import { Loader } from '@/components/ui/loader/loader'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
 import { Typography } from '@/components/ui/typography/typography'
-import { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } from '@/services/base-api'
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+} from '@/services/decks/decks.service'
 import { PiTrash } from 'react-icons/pi'
 
 import style from './decksPage.module.scss'
 
 export const DecksPage = () => {
-  const [sort, setSort] = useState<Sort>(null)
-  const [search, setSearch] = useState<string>('')
-
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
 
-  const [numberCards, setNumberCards] = useState<number[]>([0, 200])
+  const [numberCards, setNumberCards] = useState<number[]>([0, 100])
+  const [search, setSearch] = useState<string>('')
+  const [sort, setSort] = useState<Sort>(null)
 
-  const {
-    currentData: decksCurrentData,
-    data: decksData,
-    isLoading,
-  } = useGetDecksQuery({
+  const { currentData: decksCurrentData, data: decksData } = useGetDecksQuery({
     maxCardsCount: numberCards[1],
     minCardsCount: numberCards[0],
     name: search,
@@ -35,7 +34,7 @@ export const DecksPage = () => {
 
   const decks = decksCurrentData ?? decksData
 
-  if (isLoading) {
+  if (!decks) {
     return <Loader />
   }
 
