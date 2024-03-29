@@ -1,20 +1,8 @@
-import {
-  CreateDeckArgs,
-  Deck,
-  DecksResponse,
-  GetDecksArgs,
-  GetMinMaxCards,
-} from '@/services/decks/decks.types'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { baseApi } from '@/services/baseApi'
 
-export const decksService = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.flashcards.andrii.es',
-    credentials: 'include',
-    prepareHeaders: headers => {
-      headers.append('x-auth-skip', 'true')
-    },
-  }),
+import { CreateDeckArgs, Deck, DecksResponse, GetDecksArgs, GetMinMaxCards } from './decks.types'
+
+export const decksService = baseApi.injectEndpoints({
   endpoints: builder => ({
     createDeck: builder.mutation<Deck, CreateDeckArgs>({
       invalidatesTags: ['Decks'],
@@ -42,8 +30,6 @@ export const decksService = createApi({
       query: () => 'v2/decks/min-max-cards',
     }),
   }),
-  reducerPath: 'decksService',
-  tagTypes: ['Decks'],
 })
 
 export const {

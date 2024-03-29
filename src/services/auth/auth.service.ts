@@ -1,15 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { baseApi } from '@/services/baseApi'
 
-import { LoginArgs, User } from './auth.types'
+import { Login, Registration, RegistrationRes, User } from './auth.types'
 
-export const authService = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.flashcards.andrii.es',
-    credentials: 'include',
-  }),
+export const authService = baseApi.injectEndpoints({
   endpoints: builder => ({
-    login: builder.mutation<void, LoginArgs>({
-      invalidatesTags: ['Me'],
+    login: builder.mutation<void, Login>({
       query: arg => ({
         body: arg,
         method: 'POST',
@@ -17,12 +12,16 @@ export const authService = createApi({
       }),
     }),
     me: builder.query<User, void>({
-      providesTags: ['Me'],
       query: () => '/v1/auth/me',
     }),
+    registration: builder.mutation<RegistrationRes, Registration>({
+      query: arg => ({
+        body: arg,
+        method: 'POST',
+        url: '/v1/auth/sign-up',
+      }),
+    }),
   }),
-  reducerPath: 'authService',
-  tagTypes: ['Me'],
 })
 
-export const { useLoginMutation, useMeQuery } = authService
+export const { useLoginMutation, useMeQuery, useRegistrationMutation } = authService

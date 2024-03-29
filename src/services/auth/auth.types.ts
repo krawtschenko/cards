@@ -8,8 +8,24 @@ export type User = {
   updated: Date
 }
 
-export type LoginArgs = {
+export type Login = {
   email: string
   password: string
   rememberMe: boolean
+}
+
+export type Registration = {
+  email: string
+  password: string
+  sendConfirmationEmail?: boolean
+}
+
+export type RegistrationRes = {
+  avatar: string
+  created: Date
+  email: string
+  id: string
+  isEmailVerified: boolean
+  name: string
+  updated: Date
 }
