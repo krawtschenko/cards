@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button/button'
 import { Card } from '@/components/ui/card/card'
 import { ControlledInput } from '@/components/ui/input/controlledInput'
 import { Typography } from '@/components/ui/typography/typography'
+import { Registration } from '@/services/auth/auth.types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -13,7 +14,7 @@ import { registrationSchema } from './registrationSchema'
 
 export type FormValues = z.infer<typeof registrationSchema>
 type SignUpProps = {
-  onSubmit: (data: FormValues) => void
+  onSubmit: (data: Registration) => void
 }
 
 export const RegistrationForm = ({ onSubmit }: SignUpProps) => {
@@ -32,7 +33,15 @@ export const RegistrationForm = ({ onSubmit }: SignUpProps) => {
         Sign Up
       </Typography>
 
-      <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={style.form}
+        onSubmit={handleSubmit(data =>
+          onSubmit({
+            email: data.email,
+            password: data.password,
+          })
+        )}
+      >
         <ControlledInput
           control={control}
           label={'Email'}

@@ -2,6 +2,7 @@ import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-rou
 
 import { Container } from '@/components/layout/container/container'
 import { LoginPage } from '@/pages/auth/loginPage/loginPage'
+import { RegistrationPage } from '@/pages/auth/registrationPage/registrationPage'
 import { DecksPage } from '@/pages/decksPage/decksPage'
 
 const router = createBrowserRouter([
@@ -21,6 +22,14 @@ const router = createBrowserRouter([
       </Container>
     ),
     path: '/login',
+  },
+  {
+    element: (
+      <Container>
+        <RegistrationPage />
+      </Container>
+    ),
+    path: '/registration',
   },
 ])
 
