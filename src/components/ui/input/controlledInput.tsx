@@ -15,5 +15,5 @@ export const ControlledInput = <T extends FieldValues>(props: ControlledInputPro
     name,
   })
 
-  return <Input {...field} {...rest} error={error?.message} />
+  return <Input error={error?.message} id={name} {...field} {...rest} />
 }

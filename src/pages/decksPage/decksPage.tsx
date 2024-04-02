@@ -54,6 +54,7 @@ export const DecksPage = () => {
         <div className={style.params}>
           <Input
             className={style.input}
+            id={'search'}
             onChange={event => setSearch(event.currentTarget.value)}
             onClearValue={() => setSearch('')}
             placeholder={'Input search'}

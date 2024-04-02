@@ -46,7 +46,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             <LuSearch />
           </div>
         )}
-        <input {...rest} className={style.input} ref={ref} type={generateType(type, isVisible)} />
+        <input className={style.input} ref={ref} type={generateType(type, isVisible)} {...rest} />
 
         {type === 'password' && (
           <div

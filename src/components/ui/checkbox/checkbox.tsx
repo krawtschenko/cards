@@ -18,16 +18,15 @@ export type CheckboxProps = {
 
 export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
   (props, ref) => {
-    const { checked, className, disabled, id, label, name, onValueChange, ...rest } = props
+    const { checked, className, label, onValueChange, ...rest } = props
+
+    console.log(rest.disabled)
 
     return (
       <div className={clsx(style.wrapper, className)}>
         <CheckboxRadix.Root
           checked={checked}
           className={clsx(style.checkboxRoot)}
-          disabled={disabled}
-          id={id}
-          name={name}
           onCheckedChange={onValueChange}
           ref={ref}
           {...rest}
@@ -39,7 +38,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
           </div>
         </CheckboxRadix.Root>
 
-        <Typography className={clsx(disabled && style.label)} variant={'body2'}>
+        <Typography className={clsx(rest.disabled && style.label)} variant={'body2'}>
           {label}
         </Typography>
       </div>
