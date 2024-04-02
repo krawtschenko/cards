@@ -33,12 +33,14 @@ export const DecksTable = (props: DecksTableProps) => {
         {decks?.map(({ author, cardsCount, id, name, updated }) => {
           return (
             <TableRow key={id}>
-              <TableData>{name}</TableData>
+              <TableData as={Link} className={style.tableName}>
+                {name}
+              </TableData>
               <TableData className={style.tableData}>{cardsCount}</TableData>
               <TableData className={style.tableData}>
                 {new Date(updated).toLocaleDateString('pl')}
               </TableData>
-              <TableData className={style.tableDataAutor}>{author.name}</TableData>
+              <TableData className={style.tableDataAuthor}>{author.name}</TableData>
               <TableData className={style.tableDataIcons} typography={false}>
                 <div className={style.actions}>
                   <Button as={Link} className={style.icon} icon={<PiPlayCircle />} />

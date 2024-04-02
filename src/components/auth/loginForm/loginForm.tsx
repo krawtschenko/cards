@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button/button'
 import { Card } from '@/components/ui/card/card'
 import { ControlledCheckbox } from '@/components/ui/checkbox/controlledCheckbox'
 import { ControlledInput } from '@/components/ui/input/controlledInput'
 import { Typography } from '@/components/ui/typography/typography'
+import { path } from '@/routes/path'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -74,7 +76,7 @@ export const LoginForm = ({ onSubmit }: LoginProps) => {
         Don't have an account?
       </Typography>
 
-      <Typography className={style.signIn} variant={'h4'}>
+      <Typography as={Link} className={style.signUp} to={path.registration} variant={'h4'}>
         Sign Up
       </Typography>
     </Card>

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import { Column, Sort } from '@/components/tables/decksTable/column'
 import { Typography } from '@/components/ui/typography/typography'
@@ -34,13 +34,20 @@ export const TableHeadCell = ({ className, ...rest }: ComponentPropsWithoutRef<'
 }
 
 export const TableData = ({
+  as,
   className,
   typography = true,
   ...rest
-}: ComponentPropsWithoutRef<'td'> & { typography?: boolean }) => {
+}: ComponentPropsWithoutRef<'td'> & { as?: ElementType | undefined; typography?: boolean }) => {
   return (
     <td className={clsx(style.tableData, className)} {...rest}>
-      {typography ? <Typography variant={'body2'}>{rest.children}</Typography> : rest.children}
+      {typography ? (
+        <Typography as={as} variant={'body2'}>
+          {rest.children}
+        </Typography>
+      ) : (
+        rest.children
+      )}
     </td>
   )
 }

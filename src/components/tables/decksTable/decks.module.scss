@@ -1,11 +1,20 @@
 .table {
   margin-top: 10px;
 
+  .tableName {
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--color-accent-500);
+    }
+  }
+
   .tableData {
     width: 210px;
   }
 
-  .tableDataAutor {
+  .tableDataAuthor {
     width: 240px;
   }
 

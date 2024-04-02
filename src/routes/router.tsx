@@ -6,8 +6,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Container } from '@/components/layout/container/container'
 import { Loader } from '@/components/ui/loader/loader'
+import { ErrorPage } from '@/pages/404/errorPage'
 import { LoginPage } from '@/pages/auth/loginPage/loginPage'
 import { RegistrationPage } from '@/pages/auth/registrationPage/registrationPage'
 import { DecksPage } from '@/pages/decksPage/decksPage'
@@ -56,15 +56,19 @@ const privateRoutes: RouteObject[] = [
   },
 ]
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     children: [
       {
         children: privateRoutes,
         element: <PrivateRoutes />,
       },
-      ...publicRoutes,
+      {
+        children: publicRoutes,
+        element: <PublicRoutes />,
+      },
     ],
+    errorElement: <ErrorPage />,
   },
 ])
 
@@ -72,18 +76,24 @@ export const Router = () => {
   return <RouterProvider router={router} />
 }
 
-function PrivateRoutes() {
-  const { data, isLoading } = useMeQuery()
+function PublicRoutes() {
+  const { isError, isLoading } = useMeQuery()
+  const isAuthenticated = !isError && !isLoading
 
   if (isLoading) {
     return <Loader />
   }
 
-  return data ? (
-    <Container>
-      <Outlet />
-    </Container>
-  ) : (
-    <Navigate to={path.login} />
-  )
+  return isAuthenticated ? <Navigate to={path.decks} /> : <Outlet />
+}
+
+function PrivateRoutes() {
+  const { isError, isLoading } = useMeQuery()
+  const isAuthenticated = !isError && !isLoading
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />
 }

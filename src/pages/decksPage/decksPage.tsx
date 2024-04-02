@@ -36,9 +36,9 @@ export const DecksPage = () => {
 
   const decks = decksCurrentData ?? decksData
 
-  if (!decks) {
-    return <Loader />
-  }
+  // if (!decks) {
+  //   return <Loader />
+  // }
 
   return (
     <div className={style.root}>

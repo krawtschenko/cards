@@ -4,6 +4,7 @@ import { Logo } from '@/assets/icons/logo'
 import { Container } from '@/components/layout/container/container'
 import { Button } from '@/components/ui/button/button'
 import { Typography } from '@/components/ui/typography/typography'
+import { User } from '@/services/auth/auth.types'
 import clsx from 'clsx'
 
 import style from './header.module.scss'
@@ -11,10 +12,11 @@ import style from './header.module.scss'
 type HeaderProps = {
   className?: string
   loggedIn?: boolean
+  userData?: User
 } & ComponentPropsWithoutRef<'header'>
 
 export const Header = forwardRef<ElementRef<'header'>, HeaderProps>(
-  ({ className, loggedIn, ...rest }, ref) => {
+  ({ className, loggedIn, userData, ...rest }, ref) => {
     return (
       <header className={clsx(style.header, className)} ref={ref} {...rest}>
         <Container className={style.container}>
@@ -24,9 +26,8 @@ export const Header = forwardRef<ElementRef<'header'>, HeaderProps>(
           {loggedIn ? (
             <div className={style.userWrapper}>
               <Typography as={'a'} variant={'h4'}>
-                Name
+                {userData?.name}
               </Typography>
-              {/*<DropdownHeader />*/}
             </div>
           ) : (
             <Button text={'Sign In'} variant={'secondary'} />

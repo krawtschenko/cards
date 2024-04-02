@@ -1,3 +1,5 @@
+import { path } from '@/routes/path'
+import { router } from '@/routes/router'
 import {
   BaseQueryFn,
   FetchArgs,
@@ -24,7 +26,6 @@ export const baseQueryWithReauth: BaseQueryFn<
   if (result.error && result.error.status === 401) {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire()
-      // try to get a new token
       const refreshResult = await baseQuery(
         { method: 'POST', url: '/v1/auth/refresh-token' },
         api,
@@ -32,12 +33,12 @@ export const baseQueryWithReauth: BaseQueryFn<
       )
 
       if (refreshResult.meta?.response?.status === 204) {
-        // retry the initial query
         result = await baseQuery(args, api, extraOptions)
+      } else {
+        await router.navigate(path.login)
       }
       release()
     } else {
-      // wait until the mutex is available without locking it
       await mutex.waitForUnlock()
       result = await baseQuery(args, api, extraOptions)
     }

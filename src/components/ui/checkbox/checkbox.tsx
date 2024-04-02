@@ -20,8 +20,6 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
   (props, ref) => {
     const { checked, className, label, onValueChange, ...rest } = props
 
-    console.log(rest.disabled)
-
     return (
       <div className={clsx(style.wrapper, className)}>
         <CheckboxRadix.Root
