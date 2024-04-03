@@ -63,7 +63,12 @@ export const LoginForm = ({ onSubmit }: LoginProps) => {
         </div>
 
         <div className={style.forgotWrapper}>
-          <Typography className={style.forgot} variant={'body2'}>
+          <Typography
+            as={Link}
+            className={style.forgot}
+            to={path.forgot_password}
+            variant={'body2'}
+          >
             Forgot Password?
           </Typography>
         </div>

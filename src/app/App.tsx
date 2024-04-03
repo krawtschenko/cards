@@ -1,6 +1,7 @@
+import { Outlet } from 'react-router-dom'
+
 import { Container } from '@/components/layout/container/container'
 import { Header } from '@/components/layout/header/header'
-import { Router } from '@/routes/router'
 import { useMeQuery } from '@/services/auth/auth.service'
 
 export const App = () => {
@@ -10,7 +11,7 @@ export const App = () => {
     <>
       <Header loggedIn={!!data} userData={data} />
       <Container>
-        <Router />
+        <Outlet />
       </Container>
     </>
   )

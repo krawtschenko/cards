@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux'
+import { RouterProvider } from 'react-router-dom'
 
-import { App } from '@/App'
+import { router } from '@/routes/router'
 import { store } from '@/services/store'
 import ReactDOM from 'react-dom/client'
 
@@ -10,6 +11,6 @@ import '@fontsource/roboto/700.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <App />
+    <RouterProvider router={router} />
   </Provider>
 )

@@ -1,4 +1,4 @@
-import { baseApi } from '@/services/baseApi'
+import { baseApi } from '@/services/common/baseApi'
 
 import { Login, Registration, RegistrationRes, User } from './auth.types'
 

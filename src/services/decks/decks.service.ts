@@ -1,4 +1,4 @@
-import { baseApi } from '@/services/baseApi'
+import { baseApi } from '@/services/common/baseApi'
 
 import { CreateDeckArgs, Deck, DecksResponse, GetDecksArgs, GetMinMaxCards } from './decks.types'
 

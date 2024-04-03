@@ -1,16 +1,12 @@
-import {
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom'
+import { Navigate, Outlet, RouteObject, createBrowserRouter } from 'react-router-dom'
 
+import { App } from '@/app/App'
 import { Loader } from '@/components/ui/loader/loader'
-import { ErrorPage } from '@/pages/404/errorPage'
+import { ForgotPage } from '@/pages/auth/forgotPage/forgotPage'
 import { LoginPage } from '@/pages/auth/loginPage/loginPage'
 import { RegistrationPage } from '@/pages/auth/registrationPage/registrationPage'
 import { DecksPage } from '@/pages/decksPage/decksPage'
+import { ErrorPage } from '@/pages/errorPage/errorPage'
 import { useMeQuery } from '@/services/auth/auth.service'
 
 import { path } from './path'
@@ -29,7 +25,7 @@ const publicRoutes: RouteObject[] = [
     path: path.check_email,
   },
   {
-    element: <div></div>,
+    element: <ForgotPage />,
     path: path.forgot_password,
   },
   {
@@ -56,6 +52,23 @@ const privateRoutes: RouteObject[] = [
   },
 ]
 
+function PublicRoutes() {
+  const { isError, isLoading } = useMeQuery()
+  const isAuthenticated = !isError && !isLoading
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  return isAuthenticated ? <Navigate to={path.decks} /> : <Outlet />
+}
+function PrivateRoutes() {
+  const { isError, isLoading } = useMeQuery()
+  const isAuthenticated = !isError && !isLoading
+
+  return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />
+}
+
 export const router = createBrowserRouter([
   {
     children: [
@@ -68,32 +81,7 @@ export const router = createBrowserRouter([
         element: <PublicRoutes />,
       },
     ],
+    element: <App />,
     errorElement: <ErrorPage />,
   },
 ])
-
-export const Router = () => {
-  return <RouterProvider router={router} />
-}
-
-function PublicRoutes() {
-  const { isError, isLoading } = useMeQuery()
-  const isAuthenticated = !isError && !isLoading
-
-  if (isLoading) {
-    return <Loader />
-  }
-
-  return isAuthenticated ? <Navigate to={path.decks} /> : <Outlet />
-}
-
-function PrivateRoutes() {
-  const { isError, isLoading } = useMeQuery()
-  const isAuthenticated = !isError && !isLoading
-
-  if (isLoading) {
-    return <Loader />
-  }
-
-  return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />
-}
