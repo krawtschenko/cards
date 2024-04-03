@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 
-import { loginSchema } from '@/components/auth/loginForm/loginSchema'
 import { Button } from '@/components/ui/button/button'
 import { Card } from '@/components/ui/card/card'
 import { ControlledInput } from '@/components/ui/input/controlledInput'
@@ -22,7 +21,7 @@ export const NewPassword = ({ onSubmit }: NewPasswordProps) => {
     defaultValues: {
       password: '',
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(newPasswordSchema),
   })
 
   return (

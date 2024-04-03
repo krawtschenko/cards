@@ -80,8 +80,9 @@ export const router = createBrowserRouter([
         children: publicRoutes,
         element: <PublicRoutes />,
       },
+      { element: <ErrorPage />, path: path.not_found },
+      { element: <Navigate to={path.not_found} />, path: '*' },
     ],
     element: <App />,
-    errorElement: <ErrorPage />,
   },
 ])
