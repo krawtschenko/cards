@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import avatar from '@/assets/images/photo.png'
+
 import { DropdownMenu } from './dropdownMenu'
 
 const meta = {
@@ -11,4 +13,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    avatar,
+  },
+}
