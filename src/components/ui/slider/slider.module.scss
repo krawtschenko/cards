@@ -1,7 +1,7 @@
 .root {
   .label {
     &[aria-disabled='true'] {
-      color: var(--color-dark-300);
+      color: var(--color-dark-100);
     }
   }
 }
@@ -77,8 +77,8 @@
 
   &[aria-disabled='true'] {
     .rectangle {
-      color: var(--color-dark-500);
-      border-color: var(--color-dark-500);
+      color: var(--color-dark-300);
+      border-color: var(--color-dark-300);
     }
 
     .sliderRoot {
@@ -86,16 +86,16 @@
     }
 
     .sliderTrack {
-      background-color: var(--color-dark-700);
+      background-color: var(--color-dark-500);
     }
 
     .sliderRange {
-      background-color: var(--color-dark-500);
+      background-color: var(--color-dark-300);
     }
 
     .sliderThumb {
       background-color: var(--color-light-900);
-      border-color: var(--color-dark-500);
+      border-color: var(--color-dark-300);
 
       &:hover {
         box-shadow: none;

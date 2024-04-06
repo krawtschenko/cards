@@ -21,9 +21,8 @@ type DecksTableProps = {
 }
 
 export const DecksTable = (props: DecksTableProps) => {
-  const { className, currentUserId, decks, onDeleteClick, onEditClick, onSort, sort } = props
+  const { className, decks, onDeleteClick, onSort, sort } = props
 
-  // const handleEditClick = (id: string) => () => onEditClick(id)
   const handleDeleteClick = (id: string) => onDeleteClick(id)
 
   return (
