@@ -20,6 +20,6 @@ export const Primary: Story = {
       { icon: <PiPencilLine />, name: 'Edit' },
       { icon: <PiTrash />, name: 'Delete' },
     ],
-    disabled: true,
+    disabled: false,
   },
 }

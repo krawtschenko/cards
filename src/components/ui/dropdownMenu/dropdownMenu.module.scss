@@ -22,8 +22,8 @@ button {
 
   &[data-disabled='true'] {
     cursor: default;
-    color: var(--color-dark-100);
-    border-color: var(--color-dark-100);
+    color: var(--color-dark-300);
+    border-color: var(--color-dark-300);
   }
 }
 
