@@ -27,6 +27,23 @@ button {
   }
 }
 
+.avatarButton {
+  width: 36px;
+  height: 36px;
+
+  img {
+    width: 100%;
+  }
+
+  &[data-disabled='true'] {
+    cursor: default;
+
+    img {
+      filter: grayscale(1);
+    }
+  }
+}
+
 .content {
   will-change: transform, opacity;
 
@@ -61,6 +78,27 @@ button {
     fill: var(--color-dark-700);
   }
 
+  .itemUserInfo {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    outline: none;
+
+    img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .mail {
+        color: var(--color-dark-100);
+      }
+    }
+  }
+
   .item {
     user-select: none;
 
@@ -83,6 +121,10 @@ button {
     margin: 12px 0;
     background-color: var(--color-dark-500);
   }
+}
+
+.avatarContent {
+  min-width: 215px;
 }
 
 @keyframes slide-up-and-fade {
