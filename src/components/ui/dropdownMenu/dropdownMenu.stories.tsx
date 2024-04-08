@@ -20,25 +20,23 @@ const profileData = {
   name: 'Ivan',
 }
 
+const items = [
+  { icon: <PiPlayCircle />, name: 'Learn' },
+  { icon: <PiPencilLine />, name: 'Edit' },
+  { icon: <PiTrash />, name: 'Delete' },
+]
+
 export const WithoutAvatar: Story = {
   args: {
-    data: [
-      { icon: <PiPlayCircle />, name: 'Learn' },
-      { icon: <PiPencilLine />, name: 'Edit' },
-      { icon: <PiTrash />, name: 'Delete' },
-    ],
     disabled: false,
+    items,
   },
 }
 
 export const WithAvatar: Story = {
   args: {
-    data: [
-      { icon: <PiPlayCircle />, name: 'Learn' },
-      { icon: <PiPencilLine />, name: 'Edit' },
-      { icon: <PiTrash />, name: 'Delete' },
-    ],
     disabled: false,
+    items,
     profileData,
   },
 }

@@ -10,12 +10,12 @@ import style from './dropdownMenu.module.scss'
 
 type DropdownMenuProps = {
   className?: string
-  data: DropdownMenuData[]
   disabled?: boolean
+  items: DropdownMenuItems[]
   profileData?: ProfileData
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
-type DropdownMenuData = {
+type DropdownMenuItems = {
   icon: ReactNode
   name: string
 }
@@ -27,7 +27,7 @@ type ProfileData = {
 }
 
 export const DropdownMenu = (props: DropdownMenuProps) => {
-  const { className, data, disabled, profileData, ...rest } = props
+  const { className, disabled, items, profileData, ...rest } = props
 
   if (profileData) {
     return (
@@ -55,7 +55,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
                   </Typography>
                 </div>
               </DropdownMenuRadix.Item>
-              {data.map(({ icon, name }, index) => {
+              {items.map(({ icon, name }, index) => {
                 return (
                   <div key={index}>
                     <DropdownMenuRadix.Separator className={style.separator} />
@@ -84,7 +84,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
           <DropdownMenuRadix.Portal>
             <DropdownMenuRadix.Content align={'end'} className={style.content} sideOffset={10}>
               <DropdownMenuRadix.Arrow className={style.arrow} />
-              {data.map(({ icon, name }, index) => {
+              {items.map(({ icon, name }, index) => {
                 return (
                   <div key={index}>
                     {index !== 0 && <DropdownMenuRadix.Separator className={style.separator} />}
