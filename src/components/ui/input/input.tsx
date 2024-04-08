@@ -1,10 +1,4 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLInputTypeAttribute,
-  forwardRef,
-  useState,
-} from 'react'
+import { ComponentPropsWithoutRef, HTMLInputTypeAttribute, useState } from 'react'
 
 import { Typography } from '@/components/ui/typography/typography'
 import clsx from 'clsx'
@@ -19,7 +13,7 @@ export type InputProps = {
   onClearValue?: () => void
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) => {
+export const Input = (props: InputProps) => {
   const { className, error, label, onClearValue, type = 'text', ...rest } = props
 
   const [isVisible, setIsVisible] = useState(true)
@@ -46,7 +40,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
             <LuSearch />
           </div>
         )}
-        <input className={style.input} ref={ref} type={generateType(type, isVisible)} {...rest} />
+        <input className={style.input} type={generateType(type, isVisible)} {...rest} />
 
         {type === 'password' && (
           <div
@@ -71,4 +65,4 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>((props, ref) =>
       )}
     </div>
   )
-})
+}

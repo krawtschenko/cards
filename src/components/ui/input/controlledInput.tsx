@@ -8,12 +8,12 @@ export type ControlledInputProps<T extends FieldValues> = UseControllerProps<T> 
 export const ControlledInput = <T extends FieldValues>(props: ControlledInputProps<T>) => {
   const { control, name, ...rest } = props
   const {
-    field,
+    field: { onChange, value },
     fieldState: { error },
   } = useController({
     control,
     name,
   })
 
-  return <Input error={error?.message} id={name} {...field} {...rest} />
+  return <Input error={error?.message} id={name} onChange={onChange} value={value} {...rest} />
 }

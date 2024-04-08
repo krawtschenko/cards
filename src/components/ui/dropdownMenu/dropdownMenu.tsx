@@ -15,15 +15,16 @@ type DropdownMenuProps = {
   profileData?: ProfileData
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
-type DropdownMenuItems = {
+export type DropdownMenuItems = {
   icon: ReactNode
   name: string
+  onClick?: () => void
 }
 
-type ProfileData = {
-  avatar?: string
-  mail: string
-  name: string
+export type ProfileData = {
+  avatar: null | string | undefined
+  mail: string | undefined
+  name: string | undefined
 }
 
 export const DropdownMenu = (props: DropdownMenuProps) => {
@@ -55,11 +56,11 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
                   </Typography>
                 </div>
               </DropdownMenuRadix.Item>
-              {items.map(({ icon, name }, index) => {
+              {items.map(({ icon, name, onClick }, index) => {
                 return (
                   <div key={index}>
                     <DropdownMenuRadix.Separator className={style.separator} />
-                    <DropdownMenuRadix.Item className={style.item}>
+                    <DropdownMenuRadix.Item className={style.item} onClick={onClick}>
                       {icon}
                       <Typography variant={'caption'}>{name}</Typography>
                     </DropdownMenuRadix.Item>

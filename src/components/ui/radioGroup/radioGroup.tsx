@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 
 import { Typography } from '@/components/ui/typography/typography'
 import * as RadioGroups from '@radix-ui/react-radio-group'
@@ -19,31 +19,24 @@ export type Data = {
   value: string
 }
 
-export const RadioGroup = forwardRef<ElementRef<typeof RadioGroups.Root>, RadioGroupProps>(
-  ({ data, ...rest }, ref) => {
-    return (
-      <form>
-        <RadioGroups.Root
-          aria-label={'View density'}
-          className={style.radioGroupRoot}
-          ref={ref}
-          {...rest}
-        >
-          {data.map(({ label, value }) => {
-            return (
-              <div className={style.wrapper} key={value}>
-                <RadioGroups.Item className={style.radioGroupItem} id={label} value={value}>
-                  <RadioGroups.Indicator className={style.radioGroupIndicator} />
-                </RadioGroups.Item>
+export const RadioGroup = ({ data, ...rest }: RadioGroupProps) => {
+  return (
+    <form>
+      <RadioGroups.Root aria-label={'View density'} className={style.radioGroupRoot} {...rest}>
+        {data.map(({ label, value }) => {
+          return (
+            <div className={style.wrapper} key={value}>
+              <RadioGroups.Item className={style.radioGroupItem} id={label} value={value}>
+                <RadioGroups.Indicator className={style.radioGroupIndicator} />
+              </RadioGroups.Item>
 
-                <Typography className={clsx(rest.disabled && style.label)} variant={'body2'}>
-                  {label}
-                </Typography>
-              </div>
-            )
-          })}
-        </RadioGroups.Root>
-      </form>
-    )
-  }
-)
+              <Typography className={clsx(rest.disabled && style.label)} variant={'body2'}>
+                {label}
+              </Typography>
+            </div>
+          )
+        })}
+      </RadioGroups.Root>
+    </form>
+  )
+}

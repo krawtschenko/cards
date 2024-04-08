@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 
 import { Typography } from '@/components/ui/typography/typography'
 import * as Tabs from '@radix-ui/react-tabs'
@@ -18,34 +18,32 @@ export type Data = {
   value: string
 }
 
-export const Switcher = forwardRef<ElementRef<typeof Tabs.Root>, SwitcherProps>(
-  ({ className, data, disabled, label, ...rest }, ref) => {
-    return (
-      <div className={clsx(style.root, className)}>
-        <Typography aria-disabled={disabled} className={style.label} variant={'body2'}>
-          {label}
-        </Typography>
+export const Switcher = ({ className, data, disabled, label, ...rest }: SwitcherProps) => {
+  return (
+    <div className={clsx(style.root, className)}>
+      <Typography aria-disabled={disabled} className={style.label} variant={'body2'}>
+        {label}
+      </Typography>
 
-        <Tabs.Root className={style.tabsRoot} orientation={'vertical'} ref={ref} {...rest}>
-          <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
-            {data.map(({ value }, index) => (
-              <Tabs.Trigger
-                className={style.tabsTrigger}
-                disabled={disabled}
-                key={index}
-                value={value}
-              >
-                <Typography variant={'body1'}>{value}</Typography>
-              </Tabs.Trigger>
-            ))}
-          </Tabs.List>
-          {/*{data.map(({ value }, index) => (*/}
-          {/*  <Tabs.Content key={index} value={value}>*/}
-          {/*    Tab {value} content*/}
-          {/*  </Tabs.Content>*/}
-          {/*))}*/}
-        </Tabs.Root>
-      </div>
-    )
-  }
-)
+      <Tabs.Root className={style.tabsRoot} orientation={'vertical'} {...rest}>
+        <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
+          {data.map(({ value }, index) => (
+            <Tabs.Trigger
+              className={style.tabsTrigger}
+              disabled={disabled}
+              key={index}
+              value={value}
+            >
+              <Typography variant={'body1'}>{value}</Typography>
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+        {/*{data.map(({ value }, index) => (*/}
+        {/*  <Tabs.Content key={index} value={value}>*/}
+        {/*    Tab {value} content*/}
+        {/*  </Tabs.Content>*/}
+        {/*))}*/}
+      </Tabs.Root>
+    </div>
+  )
+}
