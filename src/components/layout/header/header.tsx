@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdownMenu/dropdownMenu'
 import { Typography } from '@/components/ui/typography/typography'
 import { path } from '@/routes/path'
+import { useLogoutMutation } from '@/services/auth/auth.service'
 import { User } from '@/services/auth/auth.types'
 import clsx from 'clsx'
 import { FiLogOut } from 'react-icons/fi'
@@ -24,37 +25,43 @@ type HeaderProps = {
   userData?: User
 } & ComponentPropsWithoutRef<'header'>
 
-export const Header = forwardRef<ElementRef<'header'>, HeaderProps>(
-  ({ className, loggedIn, userData, ...rest }, ref) => {
-    const navigate = useNavigate()
-    const items: DropdownMenuItems[] = [
-      { icon: <GoPerson />, name: 'My profile', onClick: () => navigate(path.not_found) },
-      { icon: <FiLogOut />, name: 'Sign Out' },
-    ]
-    const profileData: ProfileData = {
-      avatar: userData?.avatar,
-      mail: userData?.email,
-      name: userData?.name,
-    }
+export const Header = ({ className, loggedIn, userData, ...rest }: HeaderProps) => {
+  const navigate = useNavigate()
+  const [logout] = useLogoutMutation()
 
-    return (
-      <header className={clsx(style.header, className)} ref={ref} {...rest}>
-        <Container className={style.container}>
-          <NavLink className={style.logoWrapper} to={path.decks}>
-            <Logo />
-          </NavLink>
-          {loggedIn ? (
-            <div className={style.userWrapper}>
-              <Typography as={'a'} className={style.userName} variant={'h4'}>
-                {userData?.name}
-              </Typography>
-              <DropdownMenu items={items} profileData={profileData} />
-            </div>
-          ) : (
-            <Button text={'Sign In'} variant={'secondary'} />
-          )}
-        </Container>
-      </header>
-    )
+  const items: DropdownMenuItems[] = [
+    { icon: <GoPerson />, name: 'My profile', onClick: () => navigate(path.not_found) },
+    {
+      icon: <FiLogOut />,
+      name: 'Sign Out',
+      onClick: () => {
+        logout().then(() => navigate(path.login))
+      },
+    },
+  ]
+  const profileData: ProfileData = {
+    avatar: userData?.avatar,
+    mail: userData?.email,
+    name: userData?.name,
   }
-)
+
+  return (
+    <header className={clsx(style.header, className)} {...rest}>
+      <Container className={style.container}>
+        <NavLink className={style.logoWrapper} to={path.decks}>
+          <Logo />
+        </NavLink>
+        {loggedIn ? (
+          <div className={style.userWrapper}>
+            <Typography as={'a'} className={style.userName} variant={'h4'}>
+              {userData?.name}
+            </Typography>
+            <DropdownMenu items={items} profileData={profileData} />
+          </div>
+        ) : (
+          <Button text={'Sign In'} variant={'secondary'} />
+        )}
+      </Container>
+    </header>
+  )
+}

@@ -13,3 +13,9 @@
     color: var(--color-accent-500);
   }
 }
+
+@mixin auth-page-root {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}

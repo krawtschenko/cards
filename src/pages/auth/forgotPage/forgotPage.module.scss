@@ -1,5 +1,5 @@
+@import '@/styles/mixins';
+
 .root {
-  display: flex;
-  justify-content: center;
-  margin-top: 36px;
+  @include auth-page-root;
 }
