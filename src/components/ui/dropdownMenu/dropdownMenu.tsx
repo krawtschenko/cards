@@ -30,76 +30,70 @@ export type ProfileData = {
 export const DropdownMenu = (props: DropdownMenuProps) => {
   const { className, disabled, items, profileData, ...rest } = props
 
-  if (profileData) {
-    return (
-      <div className={className}>
-        <DropdownMenuRadix.Root {...rest}>
-          <DropdownMenuRadix.Trigger asChild disabled={disabled}>
-            <button className={style.avatarButton} data-disabled={disabled}>
+  return (
+    <div className={className}>
+      <DropdownMenuRadix.Root {...rest}>
+        <DropdownMenuRadix.Trigger asChild disabled={disabled}>
+          <button
+            className={clsx(profileData ? style.avatarButton : style.iconButton)}
+            data-disabled={disabled}
+          >
+            {profileData ? (
               <img alt={'avatar'} src={profileData?.avatar ?? altAvatar} />
-            </button>
-          </DropdownMenuRadix.Trigger>
-
-          <DropdownMenuRadix.Portal>
-            <DropdownMenuRadix.Content
-              align={'end'}
-              className={clsx(style.content, style.avatarContent)}
-              sideOffset={10}
-            >
-              <DropdownMenuRadix.Arrow className={style.arrow} />
-              <DropdownMenuRadix.Item className={style.itemUserInfo} disabled>
-                <img alt={'avatar'} src={profileData?.avatar ?? altAvatar} />
-                <div className={style.info}>
-                  <Typography variant={'subtitle2'}>{profileData?.name}</Typography>
-                  <Typography className={style.mail} variant={'caption'}>
-                    {profileData?.mail}
-                  </Typography>
-                </div>
-              </DropdownMenuRadix.Item>
-              {items.map(({ icon, name, onClick }, index) => {
-                return (
-                  <div key={index}>
-                    <DropdownMenuRadix.Separator className={style.separator} />
-                    <DropdownMenuRadix.Item className={style.item} onClick={onClick}>
-                      {icon}
-                      <Typography variant={'caption'}>{name}</Typography>
-                    </DropdownMenuRadix.Item>
-                  </div>
-                )
-              })}
-            </DropdownMenuRadix.Content>
-          </DropdownMenuRadix.Portal>
-        </DropdownMenuRadix.Root>
-      </div>
-    )
-  } else {
-    return (
-      <div className={className}>
-        <DropdownMenuRadix.Root {...rest}>
-          <DropdownMenuRadix.Trigger asChild disabled={disabled}>
-            <button className={style.iconButton} data-disabled={disabled}>
+            ) : (
               <BsThreeDotsVertical />
-            </button>
-          </DropdownMenuRadix.Trigger>
+            )}
+          </button>
+        </DropdownMenuRadix.Trigger>
 
-          <DropdownMenuRadix.Portal>
-            <DropdownMenuRadix.Content align={'end'} className={style.content} sideOffset={10}>
-              <DropdownMenuRadix.Arrow className={style.arrow} />
-              {items.map(({ icon, name }, index) => {
-                return (
-                  <div key={index}>
-                    {index !== 0 && <DropdownMenuRadix.Separator className={style.separator} />}
-                    <DropdownMenuRadix.Item className={style.item}>
-                      {icon}
-                      <Typography variant={'caption'}>{name}</Typography>
-                    </DropdownMenuRadix.Item>
+        <DropdownMenuRadix.Portal>
+          <DropdownMenuRadix.Content
+            align={'end'}
+            className={clsx(style.content, style.avatarContent)}
+            sideOffset={10}
+          >
+            <DropdownMenuRadix.Arrow className={style.arrow} />
+            {profileData ? (
+              <>
+                <DropdownMenuRadix.Item className={style.itemUserInfo} disabled>
+                  <img alt={'avatar'} src={profileData?.avatar ?? altAvatar} />
+                  <div className={style.info}>
+                    <Typography variant={'subtitle2'}>{profileData?.name}</Typography>
+                    <Typography className={style.mail} variant={'caption'}>
+                      {profileData?.mail}
+                    </Typography>
                   </div>
-                )
-              })}
-            </DropdownMenuRadix.Content>
-          </DropdownMenuRadix.Portal>
-        </DropdownMenuRadix.Root>
-      </div>
-    )
-  }
+                </DropdownMenuRadix.Item>
+                {items.map(({ icon, name, onClick }, index) => {
+                  return (
+                    <div key={index}>
+                      <DropdownMenuRadix.Separator className={style.separator} />
+                      <DropdownMenuRadix.Item className={style.item} onClick={onClick}>
+                        {icon}
+                        <Typography variant={'caption'}>{name}</Typography>
+                      </DropdownMenuRadix.Item>
+                    </div>
+                  )
+                })}
+              </>
+            ) : (
+              <>
+                {items.map(({ icon, name }, index) => {
+                  return (
+                    <div key={index}>
+                      {index !== 0 && <DropdownMenuRadix.Separator className={style.separator} />}
+                      <DropdownMenuRadix.Item className={style.item}>
+                        {icon}
+                        <Typography variant={'caption'}>{name}</Typography>
+                      </DropdownMenuRadix.Item>
+                    </div>
+                  )
+                })}
+              </>
+            )}
+          </DropdownMenuRadix.Content>
+        </DropdownMenuRadix.Portal>
+      </DropdownMenuRadix.Root>
+    </div>
+  )
 }
