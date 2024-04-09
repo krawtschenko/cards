@@ -9,7 +9,7 @@ export const App = () => {
 
   return (
     <>
-      <Header loggedIn={!!data} userData={data} />
+      <Header isAuth={!!data} userData={data} />
       <Container>
         <Outlet />
       </Container>

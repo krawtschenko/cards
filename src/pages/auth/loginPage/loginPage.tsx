@@ -8,7 +8,7 @@ import style from './loginPage.module.scss'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
-  const [login] = useLoginMutation()
+  const [login, { isLoading }] = useLoginMutation()
 
   const onSubmit = (data: FormValues) => {
     login(data).then(() => navigate(path.decks))
@@ -16,7 +16,7 @@ export const LoginPage = () => {
 
   return (
     <div className={style.root}>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm disabled={isLoading} onSubmit={onSubmit} />
     </div>
   )
 }

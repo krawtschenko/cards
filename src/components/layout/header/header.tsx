@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import { Logo } from '@/assets/icons/logo'
@@ -21,11 +21,11 @@ import style from './header.module.scss'
 
 type HeaderProps = {
   className?: string
-  loggedIn?: boolean
+  isAuth?: boolean
   userData?: User
 } & ComponentPropsWithoutRef<'header'>
 
-export const Header = ({ className, loggedIn, userData, ...rest }: HeaderProps) => {
+export const Header = ({ className, isAuth, userData, ...rest }: HeaderProps) => {
   const navigate = useNavigate()
   const [logout] = useLogoutMutation()
 
@@ -34,9 +34,7 @@ export const Header = ({ className, loggedIn, userData, ...rest }: HeaderProps) 
     {
       icon: <FiLogOut />,
       name: 'Sign Out',
-      onClick: () => {
-        logout().then(() => navigate(path.login))
-      },
+      onClick: logout,
     },
   ]
   const profileData: ProfileData = {
@@ -51,9 +49,9 @@ export const Header = ({ className, loggedIn, userData, ...rest }: HeaderProps) 
         <NavLink className={style.logoWrapper} to={path.decks}>
           <Logo />
         </NavLink>
-        {loggedIn ? (
+        {isAuth ? (
           <div className={style.userWrapper}>
-            <Typography as={'a'} className={style.userName} variant={'h4'}>
+            <Typography className={style.userName} variant={'h4'}>
               {userData?.name}
             </Typography>
             <DropdownMenu items={items} profileData={profileData} />

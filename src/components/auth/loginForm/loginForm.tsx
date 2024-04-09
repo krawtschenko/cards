@@ -16,15 +16,16 @@ import { loginSchema } from './loginSchema'
 
 export type FormValues = z.infer<typeof loginSchema>
 type LoginProps = {
+  disabled?: boolean
   onSubmit: (data: FormValues) => void
 }
 
-export const LoginForm = ({ onSubmit }: LoginProps) => {
+export const LoginForm = ({ disabled, onSubmit }: LoginProps) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
+      email: 'eugenykravchenko@gmail.com',
+      password: '12345',
+      rememberMe: true,
     },
     resolver: zodResolver(loginSchema),
   })
@@ -73,7 +74,13 @@ export const LoginForm = ({ onSubmit }: LoginProps) => {
           </Typography>
         </div>
 
-        <Button className={style.button} fullWidth text={'Sign In'} type={'submit'} />
+        <Button
+          className={style.button}
+          disabled={disabled}
+          fullWidth
+          text={'Sign In'}
+          type={'submit'}
+        />
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>

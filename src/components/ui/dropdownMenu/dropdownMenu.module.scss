@@ -6,12 +6,7 @@ button {
 .iconButton,
 .avatarButton {
   cursor: pointer;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 100%;
 }
 
 .iconButton {
@@ -33,6 +28,7 @@ button {
 
   img {
     width: 100%;
+    border-radius: 50%;
   }
 
   &[data-disabled='true'] {
@@ -87,6 +83,7 @@ button {
     img {
       width: 36px;
       height: 36px;
+      border-radius: 50%;
     }
 
     .info {

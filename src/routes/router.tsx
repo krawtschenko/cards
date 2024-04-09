@@ -53,20 +53,22 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PublicRoutes() {
-  const { isError, isLoading } = useMeQuery()
-  const isAuthenticated = !isError && !isLoading
+  const { data, isLoading } = useMeQuery()
 
   if (isLoading) {
     return <Loader />
   }
 
-  return isAuthenticated ? <Navigate to={path.decks} /> : <Outlet />
+  return data ? <Navigate to={path.decks} /> : <Outlet />
 }
 function PrivateRoutes() {
-  const { isError, isLoading } = useMeQuery()
-  const isAuthenticated = !isError && !isLoading
+  const { data, isLoading } = useMeQuery()
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={path.login} />
+  if (isLoading) {
+    return <Loader />
+  }
+
+  return data ? <Outlet /> : <Navigate to={path.login} />
 }
 
 export const router = createBrowserRouter([
