@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import { Logo } from '@/assets/icons/logo'
@@ -12,6 +13,7 @@ import {
 import { Typography } from '@/components/ui/typography/typography'
 import { path } from '@/routes/path'
 import { useLogoutMutation } from '@/services/auth/auth.service'
+import { authActions, authSelectors } from '@/services/auth/auth.slice'
 import { User } from '@/services/auth/auth.types'
 import clsx from 'clsx'
 import { FiLogOut } from 'react-icons/fi'
@@ -21,12 +23,13 @@ import style from './header.module.scss'
 
 type HeaderProps = {
   className?: string
-  isAuth?: boolean
   userData?: User
 } & ComponentPropsWithoutRef<'header'>
 
-export const Header = ({ className, isAuth, userData, ...rest }: HeaderProps) => {
+export const Header = ({ className, userData, ...rest }: HeaderProps) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const isAuth = useSelector(authSelectors.selectIsAuth)
   const [logout] = useLogoutMutation()
 
   const items: DropdownMenuItems[] = [
@@ -37,8 +40,10 @@ export const Header = ({ className, isAuth, userData, ...rest }: HeaderProps) =>
       onClick: async () => {
         try {
           await logout()
-          navigate(path.login)
-        } catch (error) {}
+          dispatch(authActions.auth(false))
+        } catch (error) {
+          /* empty */
+        }
       },
     },
   ]

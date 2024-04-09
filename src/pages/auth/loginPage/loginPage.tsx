@@ -1,20 +1,22 @@
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { FormValues, LoginForm } from '@/components/auth/loginForm/loginForm'
-import { path } from '@/routes/path'
 import { useLoginMutation } from '@/services/auth/auth.service'
+import { authActions } from '@/services/auth/auth.slice'
 
 import style from './loginPage.module.scss'
 
 export const LoginPage = () => {
-  const navigate = useNavigate()
   const [login, { isLoading }] = useLoginMutation()
+  const dispatch = useDispatch()
 
   const onSubmit = async (data: FormValues) => {
     try {
       await login(data)
-      navigate(path.decks)
-    } catch (error) {}
+      dispatch(authActions.auth(true))
+    } catch (error) {
+      /* empty */
+    }
   }
 
   return (

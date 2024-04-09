@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { Navigate, Outlet, RouteObject, createBrowserRouter } from 'react-router-dom'
 
 import { App } from '@/app/App'
@@ -8,6 +9,7 @@ import { RegistrationPage } from '@/pages/auth/registrationPage/registrationPage
 import { DecksPage } from '@/pages/decksPage/decksPage'
 import { ErrorPage } from '@/pages/errorPage/errorPage'
 import { useMeQuery } from '@/services/auth/auth.service'
+import { authSelectors } from '@/services/auth/auth.slice'
 
 import { path } from './path'
 
@@ -53,22 +55,24 @@ const privateRoutes: RouteObject[] = [
 ]
 
 function PublicRoutes() {
-  const { data, isLoading } = useMeQuery()
+  const isAuth = useSelector(authSelectors.selectIsAuth)
+  const { isLoading } = useMeQuery()
 
   if (isLoading) {
     return <Loader />
   }
 
-  return data ? <Navigate to={path.decks} /> : <Outlet />
+  return isAuth ? <Navigate to={path.decks} /> : <Outlet />
 }
 function PrivateRoutes() {
-  const { data, isLoading } = useMeQuery()
+  const isAuth = useSelector(authSelectors.selectIsAuth)
+  const { isLoading } = useMeQuery()
 
   if (isLoading) {
     return <Loader />
   }
 
-  return data ? <Outlet /> : <Navigate to={path.login} />
+  return isAuth ? <Outlet /> : <Navigate to={path.login} />
 }
 
 export const router = createBrowserRouter([
