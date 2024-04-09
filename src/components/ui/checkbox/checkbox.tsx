@@ -12,7 +12,6 @@ export type CheckboxProps = {
   className?: string
   disabled?: boolean
   label: string
-  name?: string
   onValueChange?: (checked: boolean) => void
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
@@ -24,6 +23,7 @@ export const Checkbox = (props: CheckboxProps) => {
       <CheckboxRadix.Root
         checked={checked}
         className={clsx(style.checkboxRoot)}
+        name={rest.id}
         onCheckedChange={onValueChange}
         {...rest}
       >

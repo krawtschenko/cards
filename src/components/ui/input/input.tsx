@@ -40,7 +40,12 @@ export const Input = (props: InputProps) => {
             <LuSearch />
           </div>
         )}
-        <input className={style.input} type={generateType(type, isVisible)} {...rest} />
+        <input
+          autoComplete={'on'}
+          className={style.input}
+          type={generateType(type, isVisible)}
+          {...rest}
+        />
 
         {type === 'password' && (
           <div
