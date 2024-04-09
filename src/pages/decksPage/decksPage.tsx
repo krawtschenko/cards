@@ -4,11 +4,9 @@ import { Sort } from '@/components/tables/decksTable/column'
 import { DecksTable } from '@/components/tables/decksTable/decksTable'
 import { Button } from '@/components/ui/button/button'
 import { Input } from '@/components/ui/input/input'
-import { Loader } from '@/components/ui/loader/loader'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
 import { Typography } from '@/components/ui/typography/typography'
-import { useMeQuery } from '@/services/auth/auth.service'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
@@ -21,7 +19,6 @@ import style from './decksPage.module.scss'
 export const DecksPage = () => {
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
-  const {} = useMeQuery()
 
   const [numberCards, setNumberCards] = useState<number[]>([0, 100])
   const [search, setSearch] = useState<string>('')
@@ -35,10 +32,6 @@ export const DecksPage = () => {
   })
 
   const decks = decksCurrentData ?? decksData
-
-  // if (!decks) {
-  //   return <Loader />
-  // }
 
   return (
     <div className={style.root}>

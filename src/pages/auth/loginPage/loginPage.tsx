@@ -10,8 +10,11 @@ export const LoginPage = () => {
   const navigate = useNavigate()
   const [login, { isLoading }] = useLoginMutation()
 
-  const onSubmit = (data: FormValues) => {
-    login(data).then(() => navigate(path.decks))
+  const onSubmit = async (data: FormValues) => {
+    try {
+      await login(data)
+      navigate(path.decks)
+    } catch (error) {}
   }
 
   return (

@@ -34,7 +34,12 @@ export const Header = ({ className, isAuth, userData, ...rest }: HeaderProps) =>
     {
       icon: <FiLogOut />,
       name: 'Sign Out',
-      onClick: logout,
+      onClick: async () => {
+        try {
+          await logout()
+          navigate(path.login)
+        } catch (error) {}
+      },
     },
   ]
   const profileData: ProfileData = {
