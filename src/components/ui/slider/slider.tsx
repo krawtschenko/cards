@@ -9,9 +9,7 @@ import style from './slider.module.scss'
 type SliderProps = {
   className?: string
   label?: string
-  max: number
-  min: number
-} & Omit<ComponentPropsWithoutRef<typeof SliderRadix.Root>, 'max' | 'min'>
+} & ComponentPropsWithoutRef<typeof SliderRadix.Root>
 
 export const Slider = ({ className, label, ...rest }: SliderProps) => {
   return (

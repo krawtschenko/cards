@@ -3,35 +3,24 @@ import { useState } from 'react'
 import { Sort } from '@/components/tables/decksTable/column'
 import { DecksTable } from '@/components/tables/decksTable/decksTable'
 import { Button } from '@/components/ui/button/button'
-import { Input } from '@/components/ui/input/input'
-import { Slider } from '@/components/ui/slider/slider'
-import { Switcher } from '@/components/ui/switcher/switcher'
 import { Typography } from '@/components/ui/typography/typography'
+import { DecksPageFilters } from '@/pages/decksPage/decksPageFilters'
+import { useMeQuery } from '@/services/auth/auth.service'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
-  useGetDecksQuery,
+  useLazyGetDecksQuery,
 } from '@/services/decks/decks.service'
-import { PiTrash } from 'react-icons/pi'
 
 import style from './decksPage.module.scss'
 
 export const DecksPage = () => {
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
+  const [getDecks, { data: decksData }] = useLazyGetDecksQuery()
+  const { data: meData } = useMeQuery()
 
-  const [numberCards, setNumberCards] = useState<number[]>([0, 100])
-  const [search, setSearch] = useState<string>('')
   const [sort, setSort] = useState<Sort>(null)
-
-  const { currentData: decksCurrentData, data: decksData } = useGetDecksQuery({
-    maxCardsCount: numberCards[1],
-    minCardsCount: numberCards[0],
-    name: search,
-    orderBy: sort ? `${sort.key}-${sort.direction}` : null,
-  })
-
-  const decks = decksCurrentData ?? decksData
 
   return (
     <div className={style.root}>
@@ -44,42 +33,11 @@ export const DecksPage = () => {
         />
       </div>
       <div className={style.deck}>
-        <div className={style.params}>
-          <Input
-            className={style.input}
-            id={'search'}
-            onChange={event => setSearch(event.currentTarget.value)}
-            onClearValue={() => setSearch('')}
-            placeholder={'Input search'}
-            type={'search'}
-            value={search}
-          />
-
-          <Switcher
-            data={[{ value: 'My Cards' }, { value: 'All Cards' }]}
-            defaultValue={'All Cards'}
-            label={'Show decks cards'}
-          />
-
-          <Slider
-            label={'Number of cards'}
-            max={100}
-            min={0}
-            onValueChange={setNumberCards}
-            value={numberCards}
-          />
-
-          <Button
-            className={style.button}
-            icon={<PiTrash />}
-            text={'Clear Filter'}
-            variant={'secondary'}
-          />
-        </div>
-
+        <DecksPageFilters getDecks={getDecks} setSort={setSort} sort={sort} />
         <DecksTable
           className={style.table}
-          decks={decks?.items}
+          currentUserId={meData?.id}
+          decks={decksData?.items}
           onDeleteClick={deleteDeck}
           onSort={setSort}
           sort={sort}

@@ -1,3 +1,8 @@
+@mixin auth-page-root {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
 @mixin auth-link {
   cursor: pointer;
 
@@ -13,9 +18,43 @@
     color: var(--color-accent-500);
   }
 }
+@mixin button {
+  all: unset;
 
-@mixin auth-page-root {
+  cursor: pointer;
+
   display: flex;
+  column-gap: 10px;
+  align-items: center;
   justify-content: center;
-  margin-top: 100px;
+
+  box-sizing: border-box;
+  padding: 6px 28px;
+
+  font-family: inherit;
+  color: inherit;
+
+  border: none;
+  border-radius: 4px;
+
+  transition: all 0.3s ease;
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-info-500);
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--color-light-900);
+
+    .icon {
+      color: var(--color-dark-100);
+    }
+  }
 }

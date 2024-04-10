@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import { Logo } from '@/assets/icons/logo'
 import { Container } from '@/components/layout/container/container'
@@ -67,7 +67,7 @@ export const Header = ({ className, userData, ...rest }: HeaderProps) => {
             <DropdownMenu items={items} profileData={profileData} />
           </div>
         ) : (
-          <Button text={'Sign In'} variant={'secondary'} />
+          <Button as={Link} text={'Sign In'} to={path.login} variant={'secondary'} />
         )}
       </Container>
     </header>

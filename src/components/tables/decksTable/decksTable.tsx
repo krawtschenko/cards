@@ -6,7 +6,7 @@ import { Deck } from '@/services/decks/decks.types'
 import clsx from 'clsx'
 import { PiPencilLine, PiPlayCircle, PiTrash } from 'react-icons/pi'
 
-import style from './decks.module.scss'
+import style from './decksTable.module.scss'
 
 import { Sort, columns } from './column'
 
@@ -21,7 +21,7 @@ type DecksTableProps = {
 }
 
 export const DecksTable = (props: DecksTableProps) => {
-  const { className, decks, onDeleteClick, onSort, sort } = props
+  const { className, currentUserId, decks, onDeleteClick, onSort, sort } = props
 
   const handleDeleteClick = (id: string) => onDeleteClick(id)
 
@@ -42,13 +42,17 @@ export const DecksTable = (props: DecksTableProps) => {
               <TableData className={style.tableDataAuthor}>{author.name}</TableData>
               <TableData className={style.tableDataIcons} typography={false}>
                 <div className={style.actions}>
-                  <Button as={Link} className={style.icon} icon={<PiPlayCircle />} />
-                  <Button className={style.icon} icon={<PiPencilLine />} />
-                  <Button
-                    className={style.icon}
-                    icon={<PiTrash />}
-                    onClick={() => handleDeleteClick(id)}
-                  />
+                  <Button className={style.icon} icon={<PiPlayCircle />} />
+                  {currentUserId === author.id && (
+                    <>
+                      <Button className={style.icon} icon={<PiPencilLine />} />
+                      <Button
+                        className={style.icon}
+                        icon={<PiTrash />}
+                        onClick={() => handleDeleteClick(id)}
+                      />
+                    </>
+                  )}
                 </div>
               </TableData>
             </TableRow>
