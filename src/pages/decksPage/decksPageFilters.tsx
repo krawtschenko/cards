@@ -9,6 +9,7 @@ import { useGetMinMaxCardsQuery } from '@/services/decks/decks.service'
 import { DecksResponse, GetDecksArgs } from '@/services/decks/decks.types'
 import { useDebounce } from '@/utils/hooks/useDebounce'
 // @ts-ignore
+// eslint-disable-next-line import/no-unresolved
 import { LazyQueryTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks'
 import { QueryDefinition } from '@reduxjs/toolkit/query'
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
@@ -17,6 +18,7 @@ import { PiTrash } from 'react-icons/pi'
 import style from '@/pages/decksPage/decksPage.module.scss'
 
 type DecksPageFilterProps = {
+  currentUserId?: string
   getDecks: LazyQueryTrigger<
     QueryDefinition<
       GetDecksArgs | void,
@@ -30,17 +32,25 @@ type DecksPageFilterProps = {
   sort: Sort
 }
 
-export const DecksPageFilters = ({ getDecks, setSort, sort }: DecksPageFilterProps) => {
+export const DecksPageFilters = ({
+  currentUserId,
+  getDecks,
+  setSort,
+  sort,
+}: DecksPageFilterProps) => {
   const { data: minMax } = useGetMinMaxCardsQuery()
 
   const [range, setRange] = useState<number[]>([0, 100])
   const [search, setSearch] = useState<string>('')
+  const [authorId, setAuthorId] = useState<string | undefined>(undefined)
   const debouncedSearch = useDebounce(search, 400)
   const debouncedRange = useDebounce(range, 200)
 
   const clearFilters = () => {
     setSearch('')
-    setRange([0, 100])
+    if (minMax) {
+      setRange([minMax?.min, minMax?.max])
+    }
     setSort(null)
   }
 
@@ -52,12 +62,13 @@ export const DecksPageFilters = ({ getDecks, setSort, sort }: DecksPageFilterPro
 
   useEffect(() => {
     getDecks({
+      authorId,
       maxCardsCount: range[1],
       minCardsCount: range[0],
       name: search,
       orderBy: sort ? `${sort.key}-${sort.direction}` : null,
     })
-  }, [debouncedSearch, sort, debouncedRange])
+  }, [debouncedSearch, sort, debouncedRange, authorId, getDecks, range, search])
 
   return (
     <div className={style.params}>
@@ -72,7 +83,10 @@ export const DecksPageFilters = ({ getDecks, setSort, sort }: DecksPageFilterPro
       />
 
       <Switcher
-        data={[{ value: 'My Cards' }, { value: 'All Cards' }]}
+        data={[
+          { onClick: () => setAuthorId(currentUserId), value: 'My Cards' },
+          { onClick: () => setAuthorId(undefined), value: 'All Cards' },
+        ]}
         defaultValue={'All Cards'}
         label={'Show decks cards'}
       />

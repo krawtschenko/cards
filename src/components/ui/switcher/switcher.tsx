@@ -15,6 +15,7 @@ type SwitcherProps = {
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export type Data = {
+  onClick?: () => void
   value: string
 }
 
@@ -27,22 +28,18 @@ export const Switcher = ({ className, data, disabled, label, ...rest }: Switcher
 
       <Tabs.Root className={style.tabsRoot} orientation={'vertical'} {...rest}>
         <Tabs.List aria-label={'tabs example'} className={style.tabsList}>
-          {data.map(({ value }, index) => (
+          {data.map(({ onClick, value }, index) => (
             <Tabs.Trigger
               className={style.tabsTrigger}
               disabled={disabled}
               key={index}
+              onClick={onClick}
               value={value}
             >
               <Typography variant={'body1'}>{value}</Typography>
             </Tabs.Trigger>
           ))}
         </Tabs.List>
-        {/*{data.map(({ value }, index) => (*/}
-        {/*  <Tabs.Content key={index} value={value}>*/}
-        {/*    Tab {value} content*/}
-        {/*  </Tabs.Content>*/}
-        {/*))}*/}
       </Tabs.Root>
     </div>
   )

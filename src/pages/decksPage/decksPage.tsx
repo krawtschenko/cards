@@ -33,7 +33,12 @@ export const DecksPage = () => {
         />
       </div>
       <div className={style.deck}>
-        <DecksPageFilters getDecks={getDecks} setSort={setSort} sort={sort} />
+        <DecksPageFilters
+          currentUserId={meData?.id}
+          getDecks={getDecks}
+          setSort={setSort}
+          sort={sort}
+        />
         <DecksTable
           className={style.table}
           currentUserId={meData?.id}
