@@ -1,16 +1,10 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const slice = createSlice({
-  initialState: { isLoading: false },
+  initialState: {},
   name: 'app',
-  reducers: {
-    loading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload
-    },
-  },
-  selectors: {
-    selectIsLoading: sliceState => sliceState.isLoading,
-  },
+  reducers: {},
+  selectors: {},
 })
 
 export const appSlice = slice.reducer
