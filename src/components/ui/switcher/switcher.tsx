@@ -9,7 +9,6 @@ import style from './switcher.module.scss'
 type SwitcherProps = {
   className?: string
   data: Data[]
-  defaultValue?: string
   disabled?: boolean
   label?: string
 } & ComponentPropsWithoutRef<typeof Tabs.Root>

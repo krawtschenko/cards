@@ -52,6 +52,7 @@ export const DecksPageFilters = ({
       setRange([minMax?.min, minMax?.max])
     }
     setSort(null)
+    setAuthorId(undefined)
   }
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export const DecksPageFilters = ({
       name: search,
       orderBy: sort ? `${sort.key}-${sort.direction}` : null,
     })
-  }, [debouncedSearch, sort, debouncedRange, authorId, getDecks, range, search])
+  }, [debouncedSearch, sort, debouncedRange, authorId])
 
   return (
     <div className={style.params}>
@@ -87,8 +88,8 @@ export const DecksPageFilters = ({
           { onClick: () => setAuthorId(currentUserId), value: 'My Cards' },
           { onClick: () => setAuthorId(undefined), value: 'All Cards' },
         ]}
-        defaultValue={'All Cards'}
         label={'Show decks cards'}
+        value={authorId ? 'My Cards' : 'All Cards'}
       />
 
       <Slider
