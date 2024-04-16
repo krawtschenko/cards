@@ -28,7 +28,11 @@ export const DecksPage = () => {
         <Typography variant={'h1'}>Decks list</Typography>
         <Button
           className={style.button}
-          onClick={() => createDeck({ name: 'Jeszcze Polska nie zginęła' })}
+          onClick={() =>
+            createDeck({
+              name: 'Amor vincit omnia',
+            })
+          }
           text={'Add New Deck'}
         />
       </div>

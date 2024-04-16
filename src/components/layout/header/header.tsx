@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import { Logo } from '@/assets/icons/logo'
@@ -13,7 +13,7 @@ import {
 import { Typography } from '@/components/ui/typography/typography'
 import { path } from '@/routes/path'
 import { useLogoutMutation } from '@/services/auth/auth.service'
-import { authActions, authSelectors } from '@/services/auth/auth.slice'
+// import { authActions, authSelectors } from '@/services/auth/auth.slice'
 import { User } from '@/services/auth/auth.types'
 import clsx from 'clsx'
 import { FiLogOut } from 'react-icons/fi'
@@ -28,8 +28,8 @@ type HeaderProps = {
 
 export const Header = ({ className, userData, ...rest }: HeaderProps) => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const isAuth = useSelector(authSelectors.selectIsAuth)
+  // const dispatch = useDispatch()
+  // const isAuth = useSelector(authSelectors.selectIsAuth)
   const [logout] = useLogoutMutation()
 
   const items: DropdownMenuItems[] = [
@@ -40,7 +40,7 @@ export const Header = ({ className, userData, ...rest }: HeaderProps) => {
       onClick: async () => {
         try {
           await logout()
-          dispatch(authActions.auth(false))
+          // dispatch(authActions.auth(false))
         } catch (error) {
           /* empty */
         }
@@ -59,7 +59,7 @@ export const Header = ({ className, userData, ...rest }: HeaderProps) => {
         <NavLink className={style.logoWrapper} to={path.decks}>
           <Logo />
         </NavLink>
-        {isAuth ? (
+        {userData ? (
           <div className={style.userWrapper}>
             <Typography className={style.userName} variant={'h4'}>
               {userData?.name}
