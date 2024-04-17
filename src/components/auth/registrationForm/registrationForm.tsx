@@ -16,10 +16,11 @@ import { registrationSchema } from './registrationSchema'
 
 export type FormValues = z.infer<typeof registrationSchema>
 type SignUpProps = {
+  disabled?: boolean
   onSubmit: (data: Registration) => void
 }
 
-export const RegistrationForm = ({ onSubmit }: SignUpProps) => {
+export const RegistrationForm = ({ disabled, onSubmit }: SignUpProps) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       confirm: '',
@@ -70,7 +71,13 @@ export const RegistrationForm = ({ onSubmit }: SignUpProps) => {
           type={'password'}
         />
 
-        <Button className={style.button} fullWidth text={'Sign Up'} type={'submit'} />
+        <Button
+          className={style.button}
+          disabled={disabled}
+          fullWidth
+          text={'Sign Up'}
+          type={'submit'}
+        />
       </form>
 
       <Typography className={style.underTitle} variant={'body2'}>
