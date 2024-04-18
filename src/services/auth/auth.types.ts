@@ -8,6 +8,11 @@ export type User = {
   updated: Date
 }
 
+export type UserUpdate = {
+  avatar?: null | string
+  name: string
+}
+
 export type Login = {
   email: string
   password: string
