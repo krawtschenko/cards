@@ -32,12 +32,9 @@ type DecksPageFilterProps = {
   sort: Sort
 }
 
-export const DecksPageFilters = ({
-  currentUserId,
-  getDecks,
-  setSort,
-  sort,
-}: DecksPageFilterProps) => {
+export const DecksPageFilters = (props: DecksPageFilterProps) => {
+  const { currentUserId, getDecks, setSort, sort } = props
+
   const { data: minMax } = useGetMinMaxCardsQuery()
 
   const [range, setRange] = useState<number[]>([0, 100])
