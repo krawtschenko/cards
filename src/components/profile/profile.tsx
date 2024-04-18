@@ -29,7 +29,7 @@ type ProfileProps = {
 
 export const Profile = ({ data, logout, onSubmit }: ProfileProps) => {
   const { control, handleSubmit, reset } = useForm<FormValues>({
-    defaultValues: { name: '' },
+    defaultValues: { name: data?.name },
     resolver: zodResolver(profileSchema),
   })
   const onSubmitHandler = (data: FormValues) => {
@@ -83,7 +83,7 @@ export const Profile = ({ data, logout, onSubmit }: ProfileProps) => {
               control={control}
               label={'Nickname'}
               name={'name'}
-              placeholder={data?.name}
+              placeholder={'Nickname'}
             />
 
             <Button fullWidth text={'Save Changes'} type={'submit'} />
