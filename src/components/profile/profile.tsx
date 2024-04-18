@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import altAvatar from '@/assets/images/photo.png'
 import { Button } from '@/components/ui/button/button'
 import { Card } from '@/components/ui/card/card'
 import { ControlledInput } from '@/components/ui/input/controlledInput'
@@ -17,13 +18,16 @@ import { profileSchema } from './profileSchema'
 
 export type FormValues = z.infer<typeof profileSchema>
 type ProfileProps = {
-  avatar: string
-  email: string
-  name: string
+  data?: {
+    avatar?: null | string
+    email?: string
+    name?: string
+  }
+  logout: () => void
   onSubmit: (data: FormValues) => void
 }
 
-export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
+export const Profile = ({ data, logout, onSubmit }: ProfileProps) => {
   const { control, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: { name: '' },
     resolver: zodResolver(profileSchema),
@@ -42,7 +46,7 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
       </Typography>
 
       <div className={style.photoWrapper}>
-        <img alt={'photo'} src={avatar} />
+        <img alt={'photo'} src={data?.avatar ?? altAvatar} />
         {!isEdit && (
           <Button className={style.edit} icon={<TbPhotoSensor2 />} variant={'secondary'} />
         )}
@@ -52,7 +56,7 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
         {!isEdit ? (
           <>
             <div className={style.nameWrapper}>
-              <Typography variant={'h2'}>{name}</Typography>
+              <Typography variant={'h2'}>{data?.name}</Typography>
               <Button
                 className={style.edit}
                 icon={<PiPencilSimpleLineBold />}
@@ -61,12 +65,13 @@ export const Profile = ({ avatar, email, name, onSubmit }: ProfileProps) => {
             </div>
 
             <Typography className={style.email} variant={'body2'}>
-              {email}
+              {data?.email}
             </Typography>
 
             <Button
               className={style.button}
               icon={<FiLogIn />}
+              onClick={logout}
               text={'Logout'}
               variant={'secondary'}
             />

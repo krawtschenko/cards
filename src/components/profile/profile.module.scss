@@ -5,17 +5,22 @@
 
 .photoWrapper {
   position: relative;
+
   display: flex;
   justify-content: center;
-  margin-top: 27px;
+
+  width: 96px;
+  height: 96px;
+  margin: 27px auto 0;
 
   img {
-    width: 96px;
+    width: 100%;
+    border-radius: 50%;
   }
 
   .edit {
     position: absolute;
-    right: 125px;
+    right: 0;
     bottom: 0;
 
     display: flex;

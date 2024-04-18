@@ -30,7 +30,7 @@ export const Header = ({ className, isAuthenticated, userData, ...rest }: Header
   const [logout] = useLogoutMutation()
 
   const items: DropdownMenuItems[] = [
-    { icon: <GoPerson />, name: 'My profile', onClick: () => navigate(path.not_found) },
+    { icon: <GoPerson />, name: 'My profile', onClick: () => navigate(path.profile) },
     {
       icon: <FiLogOut />,
       name: 'Sign Out',

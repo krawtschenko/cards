@@ -7,6 +7,7 @@ import { LoginPage } from '@/pages/auth/loginPage/loginPage'
 import { RegistrationPage } from '@/pages/auth/registrationPage/registrationPage'
 import { DecksPage } from '@/pages/decksPage/decksPage'
 import { ErrorPage } from '@/pages/errorPage/errorPage'
+import { ProfilePage } from '@/pages/profilePage/profilePage'
 import { useMeQuery } from '@/services/auth/auth.service'
 
 import { path } from './path'
@@ -39,7 +40,7 @@ const privateRoutes: RouteObject[] = [
     path: path.cards,
   },
   {
-    element: <></>,
+    element: <ProfilePage />,
     path: path.profile,
   },
   {
