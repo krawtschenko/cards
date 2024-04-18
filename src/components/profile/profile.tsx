@@ -83,7 +83,7 @@ export const Profile = ({ data, logout, onSubmit }: ProfileProps) => {
               control={control}
               label={'Nickname'}
               name={'name'}
-              placeholder={'Nickname'}
+              placeholder={data?.name}
             />
 
             <Button fullWidth text={'Save Changes'} type={'submit'} />
