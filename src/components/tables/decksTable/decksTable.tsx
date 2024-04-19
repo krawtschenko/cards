@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 
+import noCover from '@/assets/images/no-photos.png'
 import { Button } from '@/components/ui/button/button'
 import { Table, TableBody, TableData, TableHeader, TableRow } from '@/components/ui/table/table'
+import { Typography } from '@/components/ui/typography/typography'
 import { Deck } from '@/services/decks/decks.types'
 import clsx from 'clsx'
 import { PiPencilLine, PiPlayCircle, PiTrash } from 'react-icons/pi'
@@ -29,11 +31,16 @@ export const DecksTable = (props: DecksTableProps) => {
     <Table className={clsx(style.table, className)}>
       <TableHeader columns={columns} onSort={onSort} sort={sort} />
       <TableBody>
-        {decks?.map(({ author, cardsCount, id, name, updated }) => {
+        {decks?.map(({ author, cardsCount, cover, id, name, updated }) => {
           return (
             <TableRow key={id}>
-              <TableData as={Link} className={style.tableName}>
-                {name}
+              <TableData as={Link} className={style.tableName} title={name}>
+                <div className={style.tableNameWrapper}>
+                  <img alt={'cover'} src={cover ? cover : noCover} />
+                  <Typography variant={'body2'}>
+                    {name.length <= 29 ? name : name.slice(0, 27) + '...'}
+                  </Typography>
+                </div>
               </TableData>
               <TableData className={style.tableData}>{cardsCount}</TableData>
               <TableData className={style.tableData}>
@@ -42,7 +49,11 @@ export const DecksTable = (props: DecksTableProps) => {
               <TableData className={style.tableDataAuthor}>{author.name}</TableData>
               <TableData className={style.tableDataIcons} typography={false}>
                 <div className={style.actions}>
-                  <Button className={style.icon} icon={<PiPlayCircle />} />
+                  <Button
+                    className={style.icon}
+                    disabled={cardsCount === 0}
+                    icon={<PiPlayCircle />}
+                  />
                   {currentUserId === author.id && (
                     <>
                       <Button className={style.icon} icon={<PiPencilLine />} />
