@@ -1,3 +1,5 @@
+import { isNullish } from 'remeda'
+
 export const useQueryParam = <T extends boolean | number | string>(
   searchParams: URLSearchParams,
   setSearchParams: (searchParams: URLSearchParams) => void,
@@ -8,7 +10,7 @@ export const useQueryParam = <T extends boolean | number | string>(
   const convertedValue = getConvertedValue<T>(paramValue, defaultValue)
 
   const setParamValue = (value: T | null): void => {
-    if (value || value === '') {
+    if (isNullish(value) || value === '') {
       searchParams.delete(param)
     } else {
       searchParams.set(param, String(value))
