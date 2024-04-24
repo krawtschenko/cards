@@ -58,7 +58,7 @@ export const DecksPage = () => {
     setSort(null)
   }
 
-  const handleSlider = (value: number[]) => {
+  const handleSliderCommit = (value: number[]) => {
     // setCurrentPage(null)
     setMinCards(value[0])
     setMaxCards(value[1])
@@ -104,7 +104,7 @@ export const DecksPage = () => {
             max={minMax?.max}
             min={minMax?.min}
             onValueChange={setRangeValue}
-            onValueCommit={handleSlider}
+            onValueCommit={handleSliderCommit}
             value={rangeValue}
           />
 
