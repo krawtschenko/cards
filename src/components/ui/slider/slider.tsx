@@ -9,9 +9,10 @@ import style from './slider.module.scss'
 type SliderProps = {
   className?: string
   label?: string
-} & ComponentPropsWithoutRef<typeof SliderRadix.Root>
+  value: (null | number)[]
+} & Omit<ComponentPropsWithoutRef<typeof SliderRadix.Root>, 'value'>
 
-export const Slider = ({ className, label, ...rest }: SliderProps) => {
+export const Slider = ({ className, label, value, ...rest }: SliderProps) => {
   return (
     <div className={clsx(style.root, className)}>
       {label && (
@@ -21,9 +22,13 @@ export const Slider = ({ className, label, ...rest }: SliderProps) => {
       )}
       <div aria-disabled={rest.disabled} className={style.wrapper}>
         <div className={style.rectangle}>
-          <Typography variant={'body1'}>{rest.value?.[0]}</Typography>
+          <Typography variant={'body1'}>{value?.[0]}</Typography>
         </div>
-        <SliderRadix.Root className={style.sliderRoot} {...rest}>
+        <SliderRadix.Root
+          className={style.sliderRoot}
+          value={[value?.[0] ?? 0, value?.[1] ?? rest.max ?? 0]}
+          {...rest}
+        >
           <SliderRadix.Track className={style.sliderTrack}>
             <SliderRadix.Range className={style.sliderRange} />
           </SliderRadix.Track>
@@ -31,7 +36,7 @@ export const Slider = ({ className, label, ...rest }: SliderProps) => {
           <SliderRadix.Thumb className={style.sliderThumb} />
         </SliderRadix.Root>
         <div className={style.rectangle}>
-          <Typography variant={'body1'}>{rest.value?.[1]}</Typography>
+          <Typography variant={'body1'}>{value?.[1]}</Typography>
         </div>
       </div>
     </div>

@@ -31,8 +31,8 @@ export type GetDecksArgs = {
   authorId?: string
   currentPage?: number
   itemsPerPage?: number
-  maxCardsCount?: number
-  minCardsCount?: number
+  maxCardsCount?: null | number
+  minCardsCount?: null | number
   name?: string
   orderBy?: null | string
   userId?: string
