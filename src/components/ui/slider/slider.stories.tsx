@@ -17,5 +17,6 @@ export const Primary: Story = {
     label: 'Test',
     max: 10,
     min: 0,
+    value: [0, 7],
   },
 }
