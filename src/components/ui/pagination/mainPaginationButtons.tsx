@@ -1,4 +1,4 @@
-import { PageButton } from './pageButton'
+import { PageButtons } from './paginationButtons'
 
 type MainPaginationButtonsProps = {
   currentPage: number
@@ -18,7 +18,7 @@ export const MainPaginationButtons = (props: MainPaginationButtonsProps) => {
           return <span key={index}>...</span>
         }
 
-        return <PageButton key={index} onClick={onClick(page)} page={page} selected={isSelected} />
+        return <PageButtons key={index} onClick={onClick(page)} page={page} selected={isSelected} />
       })}
     </>
   )

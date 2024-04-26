@@ -3,7 +3,7 @@ import { Typography } from '@/components/ui/typography/typography'
 
 import style from './pagination.module.scss'
 
-import { NextButton, PrevButton } from './pageButton'
+import { NextButton, PrevButton } from './paginationButtons'
 import { usePagination } from './usePagination'
 
 export type PaginationProps = {

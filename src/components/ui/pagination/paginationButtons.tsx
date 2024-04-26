@@ -14,7 +14,7 @@ type PageButtonProps = NavigationButtonProps & {
   selected: boolean
 }
 
-export const PageButton = ({ disabled, onClick, page, selected }: PageButtonProps) => {
+export const PageButtons = ({ disabled, onClick, page, selected }: PageButtonProps) => {
   return (
     <button
       className={clsx(style.pageButton, selected && style.selected)}
