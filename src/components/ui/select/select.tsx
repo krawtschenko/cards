@@ -25,6 +25,7 @@ export const Select = (props: SelectType) => {
     value,
     ...restProps
   } = props
+
   const changeCurrentValue = (value: string) => {
     onValueChange?.(value)
   }

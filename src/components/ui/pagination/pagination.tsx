@@ -9,7 +9,7 @@ import { usePagination } from './usePagination'
 
 export type PaginationProps = {
   count: number
-  defaultValue?: number
+  defaultValue?: null | number
   onChange: (page: number) => void
   onPerPageChange: (itemPerPage: number) => void
   page: number
@@ -51,14 +51,14 @@ export const Pagination = (props: PaginationProps) => {
         <PrevButton disabled={isLastPage} onClick={handleNextPageClicked} />
       </div>
       <div className={style.selectBlockWrapper}>
-        <Typography variant={'body2'}>Показать</Typography>
+        <Typography variant={'body2'}>Show</Typography>
         <Select
           className={style.selectButton}
           defaultValue={defaultValue?.toString()}
           onValueChange={onValueChange}
           options={perPageOptions}
         />
-        <Typography variant={'body2'}>на странице</Typography>
+        <Typography variant={'body2'}>per page</Typography>
       </div>
     </div>
   )

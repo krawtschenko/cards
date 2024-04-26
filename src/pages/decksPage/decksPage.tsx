@@ -1,6 +1,7 @@
 import { DecksTable } from '@/components/tables/decksTable/decksTable'
 import { Button } from '@/components/ui/button/button'
 import { Input } from '@/components/ui/input/input'
+import { Pagination } from '@/components/ui/pagination/pagination'
 import { Slider } from '@/components/ui/slider/slider'
 import { Switcher } from '@/components/ui/switcher/switcher'
 import { Typography } from '@/components/ui/typography/typography'
@@ -23,14 +24,18 @@ export const DecksPage = () => {
   const { data: me } = useMeQuery()
 
   const {
+    currentPage,
     currentTab,
     maxCardsCount,
     minCardsCount,
+    perPage,
     rangeValue,
     search,
+    setCurrentPage,
     setCurrentTab,
     setMaxCards,
     setMinCards,
+    setPerPage,
     setRangeValue,
     setSearch,
     setSort,
@@ -41,6 +46,8 @@ export const DecksPage = () => {
 
   const { currentData, data } = useGetDecksQuery({
     authorId,
+    currentPage,
+    itemsPerPage: perPage,
     maxCardsCount,
     minCardsCount,
     name: search ?? undefined,
@@ -50,7 +57,7 @@ export const DecksPage = () => {
   const decksData = currentData ?? data
 
   const clearFilters = () => {
-    // setCurrentPage(null)
+    setCurrentPage(null)
     setSearch(null)
     setMinCards(null)
     setMaxCards(null)
@@ -59,7 +66,7 @@ export const DecksPage = () => {
   }
 
   const handleSliderCommit = (value: number[]) => {
-    // setCurrentPage(null)
+    setCurrentPage(null)
     setMinCards(value[0])
     setMaxCards(value[1])
   }
@@ -123,6 +130,16 @@ export const DecksPage = () => {
           onDeleteClick={deleteDeck}
           onSort={setSort}
           sort={sort}
+        />
+      </div>
+      <div className={style.pagination}>
+        <Pagination
+          count={decksData?.pagination.totalPages ?? 0}
+          defaultValue={perPage}
+          onChange={setCurrentPage}
+          onPerPageChange={setPerPage}
+          page={currentPage ?? 1}
+          perPageOptions={[10, 20, 30, 50]}
         />
       </div>
     </div>
