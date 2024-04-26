@@ -1,4 +1,5 @@
 import { MainPaginationButtons } from '@/components/ui/pagination/mainPaginationButtons'
+import { Select } from '@/components/ui/select/select'
 import { Typography } from '@/components/ui/typography/typography'
 
 import style from './pagination.module.scss'
@@ -51,12 +52,12 @@ export const Pagination = (props: PaginationProps) => {
       </div>
       <div className={style.selectBlockWrapper}>
         <Typography variant={'body2'}>Показать</Typography>
-        {/*<SelectRoot*/}
-        {/*  className={style.selectButton}*/}
-        {/*  defaultValue={defaultValue?.toString()}*/}
-        {/*  onValueChange={onValueChange}*/}
-        {/*  options={perPageOptions}*/}
-        {/*/>*/}
+        <Select
+          className={style.selectButton}
+          defaultValue={defaultValue?.toString()}
+          onValueChange={onValueChange}
+          options={perPageOptions}
+        />
         <Typography variant={'body2'}>на странице</Typography>
       </div>
     </div>
