@@ -123,6 +123,7 @@ export const DecksPage = () => {
             variant={'secondary'}
           />
         </div>
+
         <DecksTable
           className={style.table}
           currentUserId={me?.id}
@@ -132,16 +133,19 @@ export const DecksPage = () => {
           sort={sort}
         />
       </div>
-      <div className={style.pagination}>
-        <Pagination
-          count={decksData?.pagination.totalPages ?? 0}
-          defaultValue={perPage}
-          onChange={setCurrentPage}
-          onPerPageChange={setPerPage}
-          page={currentPage ?? 1}
-          perPageOptions={[10, 20, 30, 50]}
-        />
-      </div>
+
+      {(decksData?.pagination.totalPages ?? 0) <= 1 || (
+        <div className={style.pagination}>
+          <Pagination
+            count={decksData?.pagination.totalPages ?? 0}
+            defaultValue={perPage}
+            onChange={setCurrentPage}
+            onPerPageChange={setPerPage}
+            page={currentPage ?? 1}
+            perPageOptions={[10, 20, 30, 50]}
+          />
+        </div>
+      )}
     </div>
   )
 }
