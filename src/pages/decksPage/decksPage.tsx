@@ -13,6 +13,7 @@ import {
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
 } from '@/services/decks/decks.service'
+import { useDebounce } from '@/utils/hooks/useDebounce'
 import { PiTrash } from 'react-icons/pi'
 
 import style from './decksPage.module.scss'
@@ -42,6 +43,8 @@ export const DecksPage = () => {
     sort,
   } = useDeckSearchParams()
 
+  const debouncedSearch = useDebounce(search, 500)
+
   const authorId = currentTab === 'my' ? me?.id : undefined
 
   const { currentData, data } = useGetDecksQuery({
@@ -50,7 +53,7 @@ export const DecksPage = () => {
     itemsPerPage: perPage,
     maxCardsCount,
     minCardsCount,
-    name: search ?? undefined,
+    name: debouncedSearch ?? undefined,
     orderBy: sort ? `${sort.key}-${sort.direction}` : null,
   })
 
