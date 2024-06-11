@@ -27,7 +27,7 @@ export function useDeckSearchParams() {
     searchParams,
     setSearchParams,
     'maxCards',
-    61
+    35
   )
 
   const [search, setSearch] = useQueryParam<string>(searchParams, setSearchParams, 'search')
