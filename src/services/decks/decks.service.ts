@@ -37,5 +37,4 @@ export const {
   useDeleteDeckMutation,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
-  useLazyGetDecksQuery,
 } = decksService

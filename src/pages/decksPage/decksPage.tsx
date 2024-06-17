@@ -88,6 +88,7 @@ export const DecksPage = () => {
           text={'Add New Deck'}
         />
       </div>
+
       <div className={style.deck}>
         <div className={style.params}>
           <Input
