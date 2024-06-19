@@ -6,6 +6,7 @@ export const baseApi = createApi({
   // baseQuery: baseQueryWithReauth,
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.flashcards.andrii.es',
+    credentials: 'include',
   }),
   endpoints: () => ({}),
   reducerPath: 'baseApi',
