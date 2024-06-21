@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react'
 import '../src/styles/index.scss'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'
+import { MemoryRouter } from 'react-router-dom'
 
 const preview: Preview = {
   parameters: {
@@ -15,5 +16,15 @@ const preview: Preview = {
     layout: 'centered',
   },
 }
+
+export const decorators = [
+  (Story: any) => {
+    return (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    )
+  },
+]
 
 export default preview
