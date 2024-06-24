@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 import { DecksTable } from '@/components/tables/decksTable/decksTable'
 import { Button } from '@/components/ui/button/button'
 import { Input } from '@/components/ui/input/input'
@@ -74,6 +76,11 @@ export const DecksPage = () => {
     setMaxCards(value[1])
   }
 
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setCurrentPage(null)
+    setSearch(event.currentTarget.value)
+  }
+
   return (
     <div className={style.root}>
       <div className={style.head}>
@@ -94,7 +101,7 @@ export const DecksPage = () => {
           <Input
             className={style.input}
             id={'search'}
-            onChange={event => setSearch(event.currentTarget.value)}
+            onChange={onChangeHandler}
             onClearValue={() => setSearch(null)}
             placeholder={'Input search'}
             type={'search'}
