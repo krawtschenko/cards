@@ -9,10 +9,6 @@ type AuthContext = {
   isAuthenticated: boolean
 }
 
-export function useAuthContext() {
-  return useOutletContext<AuthContext>()
-}
-
 export const App = () => {
   const { data, isError, isLoading } = useMeQuery()
   const isAuthenticated = !isError && !isLoading
@@ -29,4 +25,8 @@ export const App = () => {
       </Container>
     </>
   )
+}
+
+export function useAuthContext() {
+  return useOutletContext<AuthContext>()
 }
