@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Sort } from '@/components/tables/decksTable/column'
@@ -67,6 +67,10 @@ export function useDeckSearchParams() {
           direction: sortDirection,
           key: sortKey,
         }
+
+  useEffect(() => {
+    setRangeValue([minCardsCount, maxCardsCount])
+  }, [minCardsCount, maxCardsCount])
 
   return {
     currentPage,
