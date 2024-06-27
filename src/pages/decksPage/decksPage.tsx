@@ -66,7 +66,7 @@ export const DecksPage = () => {
     setSearch(null)
     setMinCards(null)
     setMaxCards(null)
-    setRangeValue([0, minMax?.max ?? null])
+    setRangeValue([minMax?.min ?? 0, minMax?.max ?? null])
     setSort(null)
   }
 
@@ -119,8 +119,8 @@ export const DecksPage = () => {
 
           <Slider
             label={'Number of cards'}
-            max={minMax?.max}
-            min={minMax?.min}
+            max={minMax?.max || 0}
+            min={minMax?.min || 0}
             onValueChange={setRangeValue}
             onValueCommit={handleSliderCommit}
             value={rangeValue}
