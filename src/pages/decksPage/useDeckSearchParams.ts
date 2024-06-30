@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Sort } from '@/components/tables/decksTable/column'
+import { useGetMinMaxCardsQuery } from '@/services/decks/decks.service'
 import { useQueryParam } from '@/utils/hooks/useQueryParam'
 
 export function useDeckSearchParams() {
   const [searchParams, setSearchParams] = useSearchParams()
+  const { data: minMax } = useGetMinMaxCardsQuery()
 
   const [currentPage, setCurrentPage] = useQueryParam<number>(
     searchParams,
@@ -20,14 +22,14 @@ export function useDeckSearchParams() {
     searchParams,
     setSearchParams,
     'minCards',
-    0
+    minMax?.min
   )
 
   const [maxCardsCount, setMaxCards] = useQueryParam<number>(
     searchParams,
     setSearchParams,
     'maxCards',
-    35
+    minMax?.max
   )
 
   const [search, setSearch] = useQueryParam<string>(searchParams, setSearchParams, 'search')
@@ -77,6 +79,7 @@ export function useDeckSearchParams() {
     currentTab,
     maxCardsCount,
     minCardsCount,
+    minMax,
     perPage,
     rangeValue,
     search,

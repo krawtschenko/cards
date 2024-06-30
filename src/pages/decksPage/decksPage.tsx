@@ -13,7 +13,6 @@ import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetDecksQuery,
-  useGetMinMaxCardsQuery,
 } from '@/services/decks/decks.service'
 import { useDebounce } from '@/utils/hooks/useDebounce'
 import { PiTrash } from 'react-icons/pi'
@@ -23,7 +22,6 @@ import style from './decksPage.module.scss'
 export const DecksPage = () => {
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
-  const { data: minMax } = useGetMinMaxCardsQuery()
   const { data: me } = useMeQuery()
 
   const {
@@ -31,6 +29,7 @@ export const DecksPage = () => {
     currentTab,
     maxCardsCount,
     minCardsCount,
+    minMax,
     perPage,
     rangeValue,
     search,
@@ -49,15 +48,18 @@ export const DecksPage = () => {
 
   const authorId = currentTab === 'my' ? me?.id : undefined
 
-  const { currentData, data } = useGetDecksQuery({
-    authorId,
-    currentPage,
-    itemsPerPage: perPage,
-    maxCardsCount,
-    minCardsCount,
-    name: debouncedSearch ?? undefined,
-    orderBy: sort ? `${sort.key}-${sort.direction}` : null,
-  })
+  const { currentData, data } = useGetDecksQuery(
+    {
+      authorId,
+      currentPage,
+      itemsPerPage: perPage,
+      maxCardsCount,
+      minCardsCount,
+      name: debouncedSearch ?? undefined,
+      orderBy: sort ? `${sort.key}-${sort.direction}` : null,
+    },
+    { skip: !minMax }
+  )
 
   const decksData = currentData ?? data
 
