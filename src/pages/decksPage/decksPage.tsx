@@ -83,6 +83,10 @@ export const DecksPage = () => {
     setSearch(event.currentTarget.value)
   }
 
+  // if (!decksData) {
+  //   return <div>loading</div>
+  // }
+
   return (
     <div className={style.root}>
       <div className={style.head}>
